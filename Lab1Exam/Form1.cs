@@ -16,10 +16,21 @@ namespace Lab1Exam
     {
         ConcurrentQueue<int> dataQueue = new ConcurrentQueue<int>();
 
+        LinkedList<int> xRawChartValues = new LinkedList<int>();
+        LinkedList<int> yRawChartValues = new LinkedList<int>();
+        LinkedList<int> zRawChartValues = new LinkedList<int>();
+        LinkedList<int> rawChartTimes = new LinkedList<int>();
+
+        int timeInMSElapsed = 0;
+
         // Default values of -1 indicate that they haven't been assigned a value yet
         int xAxis = -1;
         int yAxis = -1;
         int zAxis = -1;
+
+        int xAxisCalibration = -1;
+        int yAxisCalibration = -1;
+        int zAxisCalibration = -1;
         public MainForm()
         {
             InitializeComponent();
@@ -27,6 +38,9 @@ namespace Lab1Exam
             portSelectionComboBox.Items.AddRange(System.IO.Ports.SerialPort.GetPortNames());
             if (portSelectionComboBox.Items.Count > 0)
                 portSelectionComboBox.SelectedIndex = 0;
+
+            rawDataChart.ChartAreas[0].AxisY.Minimum = 0;
+            rawDataChart.ChartAreas[0].AxisY.Maximum = 254;
         }
 
         private void connectButton_Click(object sender, EventArgs e)
@@ -65,7 +79,7 @@ namespace Lab1Exam
                 //bytesToReadDataGroupTextBox.Text = bytesToRead.ToString();
                 while (tinyStickSerialPort.BytesToRead > 0)
                 {
-                    //bytesToReadDataGroupTextBox.Text = bytesToRead.ToString();
+                    
                     int currentByte = tinyStickSerialPort.ReadByte();
                     //bytesToRead--;
 
@@ -108,6 +122,8 @@ namespace Lab1Exam
 
         private void updateTimer_Tick(object sender, EventArgs e)
         {
+            bytesToReadDataGroupTextBox.Text = tinyStickSerialPort.BytesToRead.ToString();
+            
             rawXDataGroupListBox.Items.Add(xAxis.ToString());
             rawYDataGroupListBox.Items.Add(yAxis.ToString());
             rawZDataGroupListBox.Items.Add(zAxis.ToString());
@@ -116,6 +132,9 @@ namespace Lab1Exam
             rawXDataGroupListBox.SelectedIndex = rawXDataGroupListBox.Items.Count - 1;
             rawYDataGroupListBox.SelectedIndex = rawYDataGroupListBox.Items.Count - 1;
             rawZDataGroupListBox.SelectedIndex = rawZDataGroupListBox.Items.Count - 1;
+
+            updateCurrentOrientation();
+            updateRawDataChart();
         }
 
         private void clearDataDataGroupButton_Click(object sender, EventArgs e)
@@ -123,6 +142,11 @@ namespace Lab1Exam
             rawXDataGroupListBox.Items.Clear();
             rawYDataGroupListBox.Items.Clear();
             rawZDataGroupListBox.Items.Clear();
+
+            rawDataChart.Series[0].Points.Clear();
+            rawDataChart.Series[1].Points.Clear();
+            rawDataChart.Series[2].Points.Clear();
+            timeInMSElapsed = 0;
         }
 
         private void saveDataDataGroupButton_Click(object sender, EventArgs e)
@@ -143,6 +167,156 @@ namespace Lab1Exam
 
             outputFile.Close();
 
+        }
+
+        private void plusNewMove(object sender)
+        {
+            if (newMoveInputsMoveListGroupTextBox.Text != "")
+            {
+                newMoveInputsMoveListGroupTextBox.AppendText(",");
+            }
+            newMoveInputsMoveListGroupTextBox.AppendText(((Button) sender).Text);
+        }
+
+        private void updateCurrentOrientation()
+        {
+            string orientation = "Calibrate TinyStick";
+            int deltaX = xAxis - xAxisCalibration;
+            int deltaY = yAxis - yAxisCalibration;
+            int deltaZ = zAxis - yAxisCalibration;
+
+            int diff = 25;
+
+            if (Math.Abs(deltaX) < diff) {
+                if (deltaY > 20)
+                    orientation = "face left";
+                else if (deltaY < -diff)
+                    orientation = "face right";
+                else if (deltaZ < -diff)
+                    orientation = "face down";
+                else
+                    orientation = "face up";
+            }
+            else if (deltaX > diff)
+            {
+                orientation = "face forwards";
+            }
+            else
+            {
+                orientation = "face backwards";
+            }
+            currentOrientationDataGroupTextBox.Text = orientation;
+            
+        }
+
+        private void plusXMoveListGroupButton_Click(object sender, EventArgs e)
+        {
+            plusNewMove(sender);
+        }
+
+        private void minusXMoveListGroupButton_Click(object sender, EventArgs e)
+        {
+            plusNewMove(sender);
+        }
+
+        private void plusYMoveListGroupButton_Click(object sender, EventArgs e)
+        {
+            plusNewMove(sender);
+        }
+
+        private void minusYMoveListGroupButton_Click(object sender, EventArgs e)
+        {
+            plusNewMove(sender);
+        }
+
+        private void plusZMoveListGroupButton_Click(object sender, EventArgs e)
+        {
+            plusNewMove(sender);
+        }
+
+        private void minusZMoveListGroupButton_Click(object sender, EventArgs e)
+        {
+            plusNewMove(sender);
+        }
+
+        private void clearNewMoveInputsMoveListGroupButton_Click(object sender, EventArgs e)
+        {
+            newMoveInputsMoveListGroupTextBox.Clear();
+        }
+
+        private void createNewMoveMostListGroupButton_Click(object sender, EventArgs e)
+        {
+            moveNameMoveListGroupListBox.Items.Add(newMoveNameMoveListGroupTextBox.Text);
+            moveInputMoveListGroupListBox.Items.Add(newMoveInputsMoveListGroupTextBox.Text);
+
+            newMoveNameMoveListGroupTextBox.Clear();
+            newMoveInputsMoveListGroupTextBox.Clear();
+        }
+
+        private void moveInputMoveListGroupListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            moveNameMoveListGroupListBox.SelectedIndex = ((ListBox)sender).SelectedIndex;
+        }
+
+        private void moveNameMoveListGroupListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            moveInputMoveListGroupListBox.SelectedIndex = ((ListBox)sender).SelectedIndex;
+        }
+
+        private void deleteMoveMoveListGroupButton_Click(object sender, EventArgs e)
+        {
+            int indexToRemove = moveNameMoveListGroupListBox.SelectedIndex;
+            moveNameMoveListGroupListBox.Items.RemoveAt(indexToRemove);
+            moveInputMoveListGroupListBox.Items.RemoveAt(indexToRemove);
+        }
+
+        private void calibrateButton_Click(object sender, EventArgs e)
+        {
+            xAxisCalibration = xAxis;
+            yAxisCalibration = yAxis;
+            zAxisCalibration = zAxis;
+        }
+
+        
+
+        private void rawDataChart_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void updateRawDataChart()
+        {
+            /*
+            xRawChartValues.AddLast(xAxis);
+            yRawChartValues.AddLast(xAxis);
+            zRawChartValues.AddLast(xAxis);
+            rawChartTimes.AddLast(timeInMSElapsed);
+
+            if (xRawChartValues.Count > 50)
+            {
+                xRawChartValues.RemoveFirst();
+                yRawChartValues.RemoveFirst();
+                zRawChartValues.RemoveFirst();
+                rawChartTimes.RemoveFirst();
+            }
+            */
+            //rawDataChart.Update();
+
+
+            rawDataChart.Series[0].Points.AddXY(timeInMSElapsed, xAxis);
+            rawDataChart.Series[1].Points.AddXY(timeInMSElapsed, yAxis);
+            rawDataChart.Series[2].Points.AddXY(timeInMSElapsed, zAxis);
+
+            if (rawDataChart.Series[0].Points.Count > 50) {
+                rawDataChart.Series[0].Points.RemoveAt(0);
+                rawDataChart.Series[1].Points.RemoveAt(0);
+                rawDataChart.Series[2].Points.RemoveAt(0);
+                //rawDataChart.ChartAreas[0].AxisX.Minimum = timeInMSElapsed - (50-1) * updateTimer.Interval;
+            }
+
+
+
+            timeInMSElapsed += 50;
         }
     }
 }

@@ -29,9 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.dataGroupBox = new System.Windows.Forms.GroupBox();
             this.clearDataDataGroupButton = new System.Windows.Forms.Button();
             this.saveDataDataGroupButton = new System.Windows.Forms.Button();
@@ -62,7 +64,7 @@
             this.connectButton = new System.Windows.Forms.Button();
             this.portSelectionComboBox = new System.Windows.Forms.ComboBox();
             this.plotsGroupBox = new System.Windows.Forms.GroupBox();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.rawDataChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.movesGroupBox = new System.Windows.Forms.GroupBox();
             this.timeoutMovesGroupTextBox = new System.Windows.Forms.TextBox();
             this.performedMovesGroupTextBox = new System.Windows.Forms.TextBox();
@@ -87,23 +89,27 @@
             this.plusXMoveListGroupButton = new System.Windows.Forms.Button();
             this.deleteMoveMoveListGroupButton = new System.Windows.Forms.Button();
             this.createNewMoveMostListGroupButton = new System.Windows.Forms.Button();
-            this.moveMoveListGroupLabel = new System.Windows.Forms.Label();
+            this.moveNameMoveListGroupLabel = new System.Windows.Forms.Label();
             this.inputMoveListGroupLabel = new System.Windows.Forms.Label();
-            this.moveMoveListGroupListBox = new System.Windows.Forms.ListBox();
-            this.inputMoveListGroupListBox = new System.Windows.Forms.ListBox();
+            this.moveNameMoveListGroupListBox = new System.Windows.Forms.ListBox();
+            this.moveInputMoveListGroupListBox = new System.Windows.Forms.ListBox();
             this.gaveGroupBox = new System.Windows.Forms.GroupBox();
             this.tinyStickSerialPort = new System.IO.Ports.SerialPort(this.components);
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
             this.csvSaveFileDialogBox = new System.Windows.Forms.SaveFileDialog();
+            this.currentOrientationDataGroupLabel = new System.Windows.Forms.Label();
+            this.currentOrientationDataGroupTextBox = new System.Windows.Forms.TextBox();
             this.dataGroupBox.SuspendLayout();
             this.plotsGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rawDataChart)).BeginInit();
             this.movesGroupBox.SuspendLayout();
             this.moveListGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGroupBox
             // 
+            this.dataGroupBox.Controls.Add(this.currentOrientationDataGroupTextBox);
+            this.dataGroupBox.Controls.Add(this.currentOrientationDataGroupLabel);
             this.dataGroupBox.Controls.Add(this.clearDataDataGroupButton);
             this.dataGroupBox.Controls.Add(this.saveDataDataGroupButton);
             this.dataGroupBox.Controls.Add(this.bytesToReadDataGroupTextBox);
@@ -163,7 +169,7 @@
             // 
             // bytesToReadDataGroupTextBox
             // 
-            this.bytesToReadDataGroupTextBox.Location = new System.Drawing.Point(7, 236);
+            this.bytesToReadDataGroupTextBox.Location = new System.Drawing.Point(201, 220);
             this.bytesToReadDataGroupTextBox.Name = "bytesToReadDataGroupTextBox";
             this.bytesToReadDataGroupTextBox.ReadOnly = true;
             this.bytesToReadDataGroupTextBox.Size = new System.Drawing.Size(100, 22);
@@ -298,7 +304,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(124, 239);
+            this.label7.Location = new System.Drawing.Point(4, 223);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(94, 17);
             this.label7.TabIndex = 9;
@@ -367,6 +373,7 @@
             this.calibrateButton.TabIndex = 2;
             this.calibrateButton.Text = "Calibrate";
             this.calibrateButton.UseVisualStyleBackColor = true;
+            this.calibrateButton.Click += new System.EventHandler(this.calibrateButton_Click);
             // 
             // connectButton
             // 
@@ -390,7 +397,7 @@
             // 
             // plotsGroupBox
             // 
-            this.plotsGroupBox.Controls.Add(this.chart1);
+            this.plotsGroupBox.Controls.Add(this.rawDataChart);
             this.plotsGroupBox.Location = new System.Drawing.Point(17, 305);
             this.plotsGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.plotsGroupBox.Name = "plotsGroupBox";
@@ -400,21 +407,40 @@
             this.plotsGroupBox.TabStop = false;
             this.plotsGroupBox.Text = "Plots";
             // 
-            // chart1
+            // rawDataChart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
-            this.chart1.Location = new System.Drawing.Point(10, 22);
-            this.chart1.Name = "chart1";
+            chartArea1.Name = "ChartArea1";
+            this.rawDataChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend";
+            this.rawDataChart.Legends.Add(legend1);
+            this.rawDataChart.Location = new System.Drawing.Point(10, 22);
+            this.rawDataChart.Name = "rawDataChart";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.IsXValueIndexed = true;
+            series1.Legend = "Legend";
+            series1.Name = "Raw X";
+            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart1.Series.Add(series2);
-            this.chart1.Size = new System.Drawing.Size(520, 252);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.IsXValueIndexed = true;
+            series2.Legend = "Legend";
+            series2.Name = "Raw Y";
+            series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.IsXValueIndexed = true;
+            series3.Legend = "Legend";
+            series3.Name = "Raw Z";
+            series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            this.rawDataChart.Series.Add(series1);
+            this.rawDataChart.Series.Add(series2);
+            this.rawDataChart.Series.Add(series3);
+            this.rawDataChart.Size = new System.Drawing.Size(520, 252);
+            this.rawDataChart.TabIndex = 0;
+            this.rawDataChart.Text = "Raw Data";
+            this.rawDataChart.Click += new System.EventHandler(this.rawDataChart_Click);
             // 
             // movesGroupBox
             // 
@@ -538,10 +564,10 @@
             this.moveListGroupBox.Controls.Add(this.plusXMoveListGroupButton);
             this.moveListGroupBox.Controls.Add(this.deleteMoveMoveListGroupButton);
             this.moveListGroupBox.Controls.Add(this.createNewMoveMostListGroupButton);
-            this.moveListGroupBox.Controls.Add(this.moveMoveListGroupLabel);
+            this.moveListGroupBox.Controls.Add(this.moveNameMoveListGroupLabel);
             this.moveListGroupBox.Controls.Add(this.inputMoveListGroupLabel);
-            this.moveListGroupBox.Controls.Add(this.moveMoveListGroupListBox);
-            this.moveListGroupBox.Controls.Add(this.inputMoveListGroupListBox);
+            this.moveListGroupBox.Controls.Add(this.moveNameMoveListGroupListBox);
+            this.moveListGroupBox.Controls.Add(this.moveInputMoveListGroupListBox);
             this.moveListGroupBox.Location = new System.Drawing.Point(851, 16);
             this.moveListGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.moveListGroupBox.Name = "moveListGroupBox";
@@ -568,11 +594,13 @@
             this.clearNewMoveInputsMoveListGroupButton.TabIndex = 29;
             this.clearNewMoveInputsMoveListGroupButton.Text = "Clear";
             this.clearNewMoveInputsMoveListGroupButton.UseVisualStyleBackColor = true;
+            this.clearNewMoveInputsMoveListGroupButton.Click += new System.EventHandler(this.clearNewMoveInputsMoveListGroupButton_Click);
             // 
             // newMoveInputsMoveListGroupTextBox
             // 
             this.newMoveInputsMoveListGroupTextBox.Location = new System.Drawing.Point(188, 84);
             this.newMoveInputsMoveListGroupTextBox.Name = "newMoveInputsMoveListGroupTextBox";
+            this.newMoveInputsMoveListGroupTextBox.ReadOnly = true;
             this.newMoveInputsMoveListGroupTextBox.Size = new System.Drawing.Size(114, 22);
             this.newMoveInputsMoveListGroupTextBox.TabIndex = 28;
             // 
@@ -591,6 +619,7 @@
             this.minusZMoveListGroupButton.TabIndex = 26;
             this.minusZMoveListGroupButton.Text = "-Z";
             this.minusZMoveListGroupButton.UseVisualStyleBackColor = true;
+            this.minusZMoveListGroupButton.Click += new System.EventHandler(this.minusZMoveListGroupButton_Click);
             // 
             // plusZMoveListGroupButton
             // 
@@ -600,6 +629,7 @@
             this.plusZMoveListGroupButton.TabIndex = 25;
             this.plusZMoveListGroupButton.Text = "+Z";
             this.plusZMoveListGroupButton.UseVisualStyleBackColor = true;
+            this.plusZMoveListGroupButton.Click += new System.EventHandler(this.plusZMoveListGroupButton_Click);
             // 
             // minusYMoveListGroupButton
             // 
@@ -609,6 +639,7 @@
             this.minusYMoveListGroupButton.TabIndex = 24;
             this.minusYMoveListGroupButton.Text = "-Y";
             this.minusYMoveListGroupButton.UseVisualStyleBackColor = true;
+            this.minusYMoveListGroupButton.Click += new System.EventHandler(this.minusYMoveListGroupButton_Click);
             // 
             // plusYMoveListGroupButton
             // 
@@ -618,6 +649,7 @@
             this.plusYMoveListGroupButton.TabIndex = 23;
             this.plusYMoveListGroupButton.Text = "+Y";
             this.plusYMoveListGroupButton.UseVisualStyleBackColor = true;
+            this.plusYMoveListGroupButton.Click += new System.EventHandler(this.plusYMoveListGroupButton_Click);
             // 
             // minusXMoveListGroupButton
             // 
@@ -627,6 +659,7 @@
             this.minusXMoveListGroupButton.TabIndex = 21;
             this.minusXMoveListGroupButton.Text = "-X";
             this.minusXMoveListGroupButton.UseVisualStyleBackColor = true;
+            this.minusXMoveListGroupButton.Click += new System.EventHandler(this.minusXMoveListGroupButton_Click);
             // 
             // plusXMoveListGroupButton
             // 
@@ -636,33 +669,36 @@
             this.plusXMoveListGroupButton.TabIndex = 20;
             this.plusXMoveListGroupButton.Text = "+X";
             this.plusXMoveListGroupButton.UseVisualStyleBackColor = true;
+            this.plusXMoveListGroupButton.Click += new System.EventHandler(this.plusXMoveListGroupButton_Click);
             // 
             // deleteMoveMoveListGroupButton
             // 
-            this.deleteMoveMoveListGroupButton.Location = new System.Drawing.Point(188, 205);
+            this.deleteMoveMoveListGroupButton.Location = new System.Drawing.Point(188, 232);
             this.deleteMoveMoveListGroupButton.Name = "deleteMoveMoveListGroupButton";
             this.deleteMoveMoveListGroupButton.Size = new System.Drawing.Size(174, 23);
             this.deleteMoveMoveListGroupButton.TabIndex = 19;
             this.deleteMoveMoveListGroupButton.Text = "Delete Move";
             this.deleteMoveMoveListGroupButton.UseVisualStyleBackColor = true;
+            this.deleteMoveMoveListGroupButton.Click += new System.EventHandler(this.deleteMoveMoveListGroupButton_Click);
             // 
             // createNewMoveMostListGroupButton
             // 
-            this.createNewMoveMostListGroupButton.Location = new System.Drawing.Point(188, 176);
+            this.createNewMoveMostListGroupButton.Location = new System.Drawing.Point(188, 203);
             this.createNewMoveMostListGroupButton.Name = "createNewMoveMostListGroupButton";
             this.createNewMoveMostListGroupButton.Size = new System.Drawing.Size(174, 23);
             this.createNewMoveMostListGroupButton.TabIndex = 18;
             this.createNewMoveMostListGroupButton.Text = "Create Move";
             this.createNewMoveMostListGroupButton.UseVisualStyleBackColor = true;
+            this.createNewMoveMostListGroupButton.Click += new System.EventHandler(this.createNewMoveMostListGroupButton_Click);
             // 
-            // moveMoveListGroupLabel
+            // moveNameMoveListGroupLabel
             // 
-            this.moveMoveListGroupLabel.AutoSize = true;
-            this.moveMoveListGroupLabel.Location = new System.Drawing.Point(7, 24);
-            this.moveMoveListGroupLabel.Name = "moveMoveListGroupLabel";
-            this.moveMoveListGroupLabel.Size = new System.Drawing.Size(42, 17);
-            this.moveMoveListGroupLabel.TabIndex = 17;
-            this.moveMoveListGroupLabel.Text = "Move";
+            this.moveNameMoveListGroupLabel.AutoSize = true;
+            this.moveNameMoveListGroupLabel.Location = new System.Drawing.Point(7, 24);
+            this.moveNameMoveListGroupLabel.Name = "moveNameMoveListGroupLabel";
+            this.moveNameMoveListGroupLabel.Size = new System.Drawing.Size(45, 17);
+            this.moveNameMoveListGroupLabel.TabIndex = 17;
+            this.moveNameMoveListGroupLabel.Text = "Name";
             // 
             // inputMoveListGroupLabel
             // 
@@ -673,23 +709,25 @@
             this.inputMoveListGroupLabel.TabIndex = 16;
             this.inputMoveListGroupLabel.Text = "Input";
             // 
-            // moveMoveListGroupListBox
+            // moveNameMoveListGroupListBox
             // 
-            this.moveMoveListGroupListBox.FormattingEnabled = true;
-            this.moveMoveListGroupListBox.ItemHeight = 16;
-            this.moveMoveListGroupListBox.Location = new System.Drawing.Point(7, 47);
-            this.moveMoveListGroupListBox.Name = "moveMoveListGroupListBox";
-            this.moveMoveListGroupListBox.Size = new System.Drawing.Size(74, 228);
-            this.moveMoveListGroupListBox.TabIndex = 1;
+            this.moveNameMoveListGroupListBox.FormattingEnabled = true;
+            this.moveNameMoveListGroupListBox.ItemHeight = 16;
+            this.moveNameMoveListGroupListBox.Location = new System.Drawing.Point(7, 47);
+            this.moveNameMoveListGroupListBox.Name = "moveNameMoveListGroupListBox";
+            this.moveNameMoveListGroupListBox.Size = new System.Drawing.Size(74, 228);
+            this.moveNameMoveListGroupListBox.TabIndex = 1;
+            this.moveNameMoveListGroupListBox.SelectedIndexChanged += new System.EventHandler(this.moveNameMoveListGroupListBox_SelectedIndexChanged);
             // 
-            // inputMoveListGroupListBox
+            // moveInputMoveListGroupListBox
             // 
-            this.inputMoveListGroupListBox.FormattingEnabled = true;
-            this.inputMoveListGroupListBox.ItemHeight = 16;
-            this.inputMoveListGroupListBox.Location = new System.Drawing.Point(78, 47);
-            this.inputMoveListGroupListBox.Name = "inputMoveListGroupListBox";
-            this.inputMoveListGroupListBox.Size = new System.Drawing.Size(104, 228);
-            this.inputMoveListGroupListBox.TabIndex = 0;
+            this.moveInputMoveListGroupListBox.FormattingEnabled = true;
+            this.moveInputMoveListGroupListBox.ItemHeight = 16;
+            this.moveInputMoveListGroupListBox.Location = new System.Drawing.Point(78, 47);
+            this.moveInputMoveListGroupListBox.Name = "moveInputMoveListGroupListBox";
+            this.moveInputMoveListGroupListBox.Size = new System.Drawing.Size(104, 228);
+            this.moveInputMoveListGroupListBox.TabIndex = 0;
+            this.moveInputMoveListGroupListBox.SelectedIndexChanged += new System.EventHandler(this.moveInputMoveListGroupListBox_SelectedIndexChanged);
             // 
             // gaveGroupBox
             // 
@@ -720,6 +758,23 @@
             this.csvSaveFileDialogBox.RestoreDirectory = true;
             this.csvSaveFileDialogBox.Title = "Save as CSV File";
             // 
+            // currentOrientationDataGroupLabel
+            // 
+            this.currentOrientationDataGroupLabel.AutoSize = true;
+            this.currentOrientationDataGroupLabel.Location = new System.Drawing.Point(6, 258);
+            this.currentOrientationDataGroupLabel.Name = "currentOrientationDataGroupLabel";
+            this.currentOrientationDataGroupLabel.Size = new System.Drawing.Size(129, 17);
+            this.currentOrientationDataGroupLabel.TabIndex = 34;
+            this.currentOrientationDataGroupLabel.Text = "Current Orientation";
+            // 
+            // currentOrientationDataGroupTextBox
+            // 
+            this.currentOrientationDataGroupTextBox.Location = new System.Drawing.Point(201, 255);
+            this.currentOrientationDataGroupTextBox.Name = "currentOrientationDataGroupTextBox";
+            this.currentOrientationDataGroupTextBox.ReadOnly = true;
+            this.currentOrientationDataGroupTextBox.Size = new System.Drawing.Size(100, 22);
+            this.currentOrientationDataGroupTextBox.TabIndex = 35;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -737,7 +792,7 @@
             this.dataGroupBox.ResumeLayout(false);
             this.dataGroupBox.PerformLayout();
             this.plotsGroupBox.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rawDataChart)).EndInit();
             this.movesGroupBox.ResumeLayout(false);
             this.movesGroupBox.PerformLayout();
             this.moveListGroupBox.ResumeLayout(false);
@@ -769,7 +824,7 @@
         private System.Windows.Forms.Label accelerationDataGroupLabel;
         private System.Windows.Forms.Label zDataGroupLabel;
         private System.Windows.Forms.Label queueDataGroupLabel;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart rawDataChart;
         private System.Windows.Forms.TextBox timeoutMovesGroupTextBox;
         private System.Windows.Forms.TextBox performedMovesGroupTextBox;
         private System.Windows.Forms.TextBox inputMovesGroupTextBox;
@@ -781,8 +836,8 @@
         private System.Windows.Forms.Label performedMovesGroupLabel;
         private System.Windows.Forms.Label inputMovesGroupLabel;
         private System.Windows.Forms.Label inputMoveListGroupLabel;
-        private System.Windows.Forms.ListBox moveMoveListGroupListBox;
-        private System.Windows.Forms.ListBox inputMoveListGroupListBox;
+        private System.Windows.Forms.ListBox moveNameMoveListGroupListBox;
+        private System.Windows.Forms.ListBox moveInputMoveListGroupListBox;
         private System.Windows.Forms.TextBox zQueueDataGroupTextBox;
         private System.Windows.Forms.TextBox yQueueDataGroupTextBox;
         private System.Windows.Forms.TextBox xQueueDataGroupTextBox;
@@ -807,10 +862,12 @@
         private System.Windows.Forms.Button clearNewMoveInputsMoveListGroupButton;
         private System.Windows.Forms.TextBox newMoveInputsMoveListGroupTextBox;
         private System.Windows.Forms.Label newMoveNameMoveListGroupLabel;
-        private System.Windows.Forms.Label moveMoveListGroupLabel;
+        private System.Windows.Forms.Label moveNameMoveListGroupLabel;
         private System.IO.Ports.SerialPort tinyStickSerialPort;
         private System.Windows.Forms.Timer updateTimer;
         private System.Windows.Forms.SaveFileDialog csvSaveFileDialogBox;
+        private System.Windows.Forms.TextBox currentOrientationDataGroupTextBox;
+        private System.Windows.Forms.Label currentOrientationDataGroupLabel;
     }
 }
 
