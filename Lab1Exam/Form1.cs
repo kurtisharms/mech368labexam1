@@ -14,12 +14,10 @@ namespace Lab1Exam
 {
     public partial class MainForm : Form
     {
-        ConcurrentQueue<int> dataQueue = new ConcurrentQueue<int>();
-
-        LinkedList<int> xRawChartValues = new LinkedList<int>();
-        LinkedList<int> yRawChartValues = new LinkedList<int>();
-        LinkedList<int> zRawChartValues = new LinkedList<int>();
-        LinkedList<int> rawChartTimes = new LinkedList<int>();
+        //ConcurrentQueue<int> dataQueue = new ConcurrentQueue<int>();
+        ConcurrentQueue<int> xDataQueue = new ConcurrentQueue<int>();
+        ConcurrentQueue<int> yDataQueue = new ConcurrentQueue<int>();
+        ConcurrentQueue<int> zDataQueue = new ConcurrentQueue<int>();
 
         int timeInMSElapsed = 0;
 
@@ -45,20 +43,27 @@ namespace Lab1Exam
 
         private void connectButton_Click(object sender, EventArgs e)
         {
-            if (!tinyStickSerialPort.IsOpen)
+            try
             {
-                tinyStickSerialPort.PortName = portSelectionComboBox.SelectedItem.ToString();
-                tinyStickSerialPort.Open();
-                //tinyStickSerialPort.DtrEnable = true;
-                connectButton.Text = "Disconnect";
-                updateTimer.Enabled = true;
+                if (!tinyStickSerialPort.IsOpen)
+                {
+                    tinyStickSerialPort.PortName = portSelectionComboBox.SelectedItem.ToString();
+                    tinyStickSerialPort.Open();
+                    //tinyStickSerialPort.DtrEnable = true;
+                    connectButton.Text = "Disconnect";
+                    updateTimer.Enabled = true;
+                }
+                else
+                {
+                    tinyStickSerialPort.Close();
+                    //dataQueue = new ConcurrentQueue<int>();
+                    connectButton.Text = "Connect";
+                    updateTimer.Enabled = false;
+                }
             }
-            else
+            catch (NullReferenceException)
             {
-                tinyStickSerialPort.Close();
-                dataQueue = new ConcurrentQueue<int>();
-                connectButton.Text = "Connect";
-                updateTimer.Enabled = false;
+                // Handles case of trying to connect to an empty COM port
             }
         }
 
@@ -97,21 +102,24 @@ namespace Lab1Exam
                         else if (i == 1)
                         {
                             xAxis = currentByte;
+                            xDataQueue.Enqueue(currentByte);
                             i++;
                         }
                         else if (i == 2)
                         {
                             yAxis = currentByte;
+                            yDataQueue.Enqueue(currentByte);
                             i++;
                         }
                         else if (i == 3)
                         {
                             zAxis = currentByte;
+                            zDataQueue.Enqueue(currentByte);
                             i = 0;
                         }
                     }
 
-                    dataQueue.Enqueue(currentByte);
+                    //dataQueue.Enqueue(currentByte);
                 }
             }
             catch (InvalidOperationException)
@@ -124,6 +132,12 @@ namespace Lab1Exam
         {
             bytesToReadDataGroupTextBox.Text = tinyStickSerialPort.BytesToRead.ToString();
             
+            // Update current accelerations
+            xAccelerationDataGroupTextBox.Text = xAxis.ToString();
+            yAccelerationDataGroupTextBox.Text = yAxis.ToString();
+            zAccelerationDataGroupTextBox.Text = zAxis.ToString();
+
+            // Add to list of accelerations
             rawXDataGroupListBox.Items.Add(xAxis.ToString());
             rawYDataGroupListBox.Items.Add(yAxis.ToString());
             rawZDataGroupListBox.Items.Add(zAxis.ToString());
@@ -132,6 +146,16 @@ namespace Lab1Exam
             rawXDataGroupListBox.SelectedIndex = rawXDataGroupListBox.Items.Count - 1;
             rawYDataGroupListBox.SelectedIndex = rawYDataGroupListBox.Items.Count - 1;
             rawZDataGroupListBox.SelectedIndex = rawZDataGroupListBox.Items.Count - 1;
+
+            // Update Queues
+            xQueueDataGroupTextBox.Text = xDataQueue.Count.ToString();
+            yQueueDataGroupTextBox.Text = yDataQueue.Count.ToString();
+            zQueueDataGroupTextBox.Text = zDataQueue.Count.ToString();
+
+            // Update last 100 mean values
+            xMeanDataGroupTextBox.Text = getMean(100, xDataQueue).ToString();
+            yMeanDataGroupTextBox.Text = getMean(100, yDataQueue).ToString();
+            zMeanDataGroupTextBox.Text = getMean(100, zDataQueue).ToString();
 
             updateCurrentOrientation();
             updateRawDataChart();
@@ -286,23 +310,6 @@ namespace Lab1Exam
 
         private void updateRawDataChart()
         {
-            /*
-            xRawChartValues.AddLast(xAxis);
-            yRawChartValues.AddLast(xAxis);
-            zRawChartValues.AddLast(xAxis);
-            rawChartTimes.AddLast(timeInMSElapsed);
-
-            if (xRawChartValues.Count > 50)
-            {
-                xRawChartValues.RemoveFirst();
-                yRawChartValues.RemoveFirst();
-                zRawChartValues.RemoveFirst();
-                rawChartTimes.RemoveFirst();
-            }
-            */
-            //rawDataChart.Update();
-
-
             rawDataChart.Series[0].Points.AddXY(timeInMSElapsed, xAxis);
             rawDataChart.Series[1].Points.AddXY(timeInMSElapsed, yAxis);
             rawDataChart.Series[2].Points.AddXY(timeInMSElapsed, zAxis);
@@ -311,12 +318,19 @@ namespace Lab1Exam
                 rawDataChart.Series[0].Points.RemoveAt(0);
                 rawDataChart.Series[1].Points.RemoveAt(0);
                 rawDataChart.Series[2].Points.RemoveAt(0);
-                //rawDataChart.ChartAreas[0].AxisX.Minimum = timeInMSElapsed - (50-1) * updateTimer.Interval;
             }
 
-
-
             timeInMSElapsed += 50;
+        }
+
+        private double getMean(int lastCount, ConcurrentQueue<int> queue) {
+            int result;
+            if (lastCount != -1)
+            {
+                while (queue.Count > lastCount)
+                    queue.TryDequeue(out result);
+            }
+            return queue.Average();
         }
     }
 }

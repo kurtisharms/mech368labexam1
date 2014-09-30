@@ -35,6 +35,8 @@
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.dataGroupBox = new System.Windows.Forms.GroupBox();
+            this.currentOrientationDataGroupTextBox = new System.Windows.Forms.TextBox();
+            this.currentOrientationDataGroupLabel = new System.Windows.Forms.Label();
             this.clearDataDataGroupButton = new System.Windows.Forms.Button();
             this.saveDataDataGroupButton = new System.Windows.Forms.Button();
             this.bytesToReadDataGroupTextBox = new System.Windows.Forms.TextBox();
@@ -97,8 +99,6 @@
             this.tinyStickSerialPort = new System.IO.Ports.SerialPort(this.components);
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
             this.csvSaveFileDialogBox = new System.Windows.Forms.SaveFileDialog();
-            this.currentOrientationDataGroupLabel = new System.Windows.Forms.Label();
-            this.currentOrientationDataGroupTextBox = new System.Windows.Forms.TextBox();
             this.dataGroupBox.SuspendLayout();
             this.plotsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rawDataChart)).BeginInit();
@@ -146,6 +146,23 @@
             this.dataGroupBox.TabIndex = 0;
             this.dataGroupBox.TabStop = false;
             this.dataGroupBox.Text = "Data";
+            // 
+            // currentOrientationDataGroupTextBox
+            // 
+            this.currentOrientationDataGroupTextBox.Location = new System.Drawing.Point(201, 255);
+            this.currentOrientationDataGroupTextBox.Name = "currentOrientationDataGroupTextBox";
+            this.currentOrientationDataGroupTextBox.ReadOnly = true;
+            this.currentOrientationDataGroupTextBox.Size = new System.Drawing.Size(100, 22);
+            this.currentOrientationDataGroupTextBox.TabIndex = 35;
+            // 
+            // currentOrientationDataGroupLabel
+            // 
+            this.currentOrientationDataGroupLabel.AutoSize = true;
+            this.currentOrientationDataGroupLabel.Location = new System.Drawing.Point(6, 258);
+            this.currentOrientationDataGroupLabel.Name = "currentOrientationDataGroupLabel";
+            this.currentOrientationDataGroupLabel.Size = new System.Drawing.Size(129, 17);
+            this.currentOrientationDataGroupLabel.TabIndex = 34;
+            this.currentOrientationDataGroupLabel.Text = "Current Orientation";
             // 
             // clearDataDataGroupButton
             // 
@@ -747,7 +764,6 @@
             // 
             // updateTimer
             // 
-            this.updateTimer.Interval = 50;
             this.updateTimer.Tick += new System.EventHandler(this.updateTimer_Tick);
             // 
             // csvSaveFileDialogBox
@@ -757,23 +773,6 @@
             this.csvSaveFileDialogBox.Filter = "CSV Files (*.csv)|*csv";
             this.csvSaveFileDialogBox.RestoreDirectory = true;
             this.csvSaveFileDialogBox.Title = "Save as CSV File";
-            // 
-            // currentOrientationDataGroupLabel
-            // 
-            this.currentOrientationDataGroupLabel.AutoSize = true;
-            this.currentOrientationDataGroupLabel.Location = new System.Drawing.Point(6, 258);
-            this.currentOrientationDataGroupLabel.Name = "currentOrientationDataGroupLabel";
-            this.currentOrientationDataGroupLabel.Size = new System.Drawing.Size(129, 17);
-            this.currentOrientationDataGroupLabel.TabIndex = 34;
-            this.currentOrientationDataGroupLabel.Text = "Current Orientation";
-            // 
-            // currentOrientationDataGroupTextBox
-            // 
-            this.currentOrientationDataGroupTextBox.Location = new System.Drawing.Point(201, 255);
-            this.currentOrientationDataGroupTextBox.Name = "currentOrientationDataGroupTextBox";
-            this.currentOrientationDataGroupTextBox.ReadOnly = true;
-            this.currentOrientationDataGroupTextBox.Size = new System.Drawing.Size(100, 22);
-            this.currentOrientationDataGroupTextBox.TabIndex = 35;
             // 
             // MainForm
             // 
