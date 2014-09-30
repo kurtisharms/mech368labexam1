@@ -14,7 +14,7 @@ namespace Lab1Exam
 {
     public partial class MainForm : Form
     {
-        //ConcurrentQueue<int> dataQueue = new ConcurrentQueue<int>();
+        ConcurrentQueue<int> dataQueue = new ConcurrentQueue<int>();
         ConcurrentQueue<int> xDataQueue = new ConcurrentQueue<int>();
         ConcurrentQueue<int> yDataQueue = new ConcurrentQueue<int>();
         ConcurrentQueue<int> zDataQueue = new ConcurrentQueue<int>();
@@ -29,6 +29,11 @@ namespace Lab1Exam
         int xAxisCalibration = -1;
         int yAxisCalibration = -1;
         int zAxisCalibration = -1;
+
+        double xMean = -1;
+        double yMean = -1;
+        double zMean = -1;
+
         public MainForm()
         {
             InitializeComponent();
@@ -56,7 +61,7 @@ namespace Lab1Exam
                 else
                 {
                     tinyStickSerialPort.Close();
-                    //dataQueue = new ConcurrentQueue<int>();
+                    dataQueue = new ConcurrentQueue<int>();
                     connectButton.Text = "Connect";
                     updateTimer.Enabled = false;
                 }
@@ -80,13 +85,10 @@ namespace Lab1Exam
 
             try
             {
-                //int bytesToRead = tinyStickSerialPort.BytesToRead;
-                //bytesToReadDataGroupTextBox.Text = bytesToRead.ToString();
                 while (tinyStickSerialPort.BytesToRead > 0)
                 {
                     
                     int currentByte = tinyStickSerialPort.ReadByte();
-                    //bytesToRead--;
 
                     if (i == -1)
                     {
@@ -119,7 +121,7 @@ namespace Lab1Exam
                         }
                     }
 
-                    //dataQueue.Enqueue(currentByte);
+                    dataQueue.Enqueue(currentByte);
                 }
             }
             catch (InvalidOperationException)
