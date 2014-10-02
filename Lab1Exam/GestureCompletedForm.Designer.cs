@@ -41,7 +41,7 @@
             this.gestureCompletedMessageTextBox.Location = new System.Drawing.Point(-1, 152);
             this.gestureCompletedMessageTextBox.Name = "gestureCompletedMessageTextBox";
             this.gestureCompletedMessageTextBox.ReadOnly = true;
-            this.gestureCompletedMessageTextBox.Size = new System.Drawing.Size(402, 75);
+            this.gestureCompletedMessageTextBox.Size = new System.Drawing.Size(602, 75);
             this.gestureCompletedMessageTextBox.TabIndex = 0;
             this.gestureCompletedMessageTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -54,7 +54,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Khaki;
-            this.ClientSize = new System.Drawing.Size(400, 400);
+            this.ClientSize = new System.Drawing.Size(600, 400);
             this.Controls.Add(this.gestureCompletedMessageTextBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GestureCompletedForm";

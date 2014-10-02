@@ -378,8 +378,11 @@ namespace Lab1Exam
         private void deleteMoveMoveListGroupButton_Click(object sender, EventArgs e)
         {
             int indexToRemove = moveNameMoveListGroupListBox.SelectedIndex;
-            moveNameMoveListGroupListBox.Items.RemoveAt(indexToRemove);
-            moveInputMoveListGroupListBox.Items.RemoveAt(indexToRemove);
+            if (indexToRemove != -1)
+            {
+                moveNameMoveListGroupListBox.Items.RemoveAt(indexToRemove);
+                moveInputMoveListGroupListBox.Items.RemoveAt(indexToRemove);
+            }
         }
 
         private void calibrateButton_Click(object sender, EventArgs e)
@@ -405,7 +408,7 @@ namespace Lab1Exam
             rawDataChart.Series[1].Points.AddXY(timeInMSElapsed, yAxis);
             rawDataChart.Series[2].Points.AddXY(timeInMSElapsed, zAxis);
 
-            if (rawDataChart.Series[0].Points.Count > 50) {
+            if (rawDataChart.Series[0].Points.Count > 100) {
                 rawDataChart.Series[0].Points.RemoveAt(0);
                 rawDataChart.Series[1].Points.RemoveAt(0);
                 rawDataChart.Series[2].Points.RemoveAt(0);

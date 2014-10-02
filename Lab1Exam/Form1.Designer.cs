@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series16 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series17 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series18 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.dataGroupBox = new System.Windows.Forms.GroupBox();
             this.currentOrientationDataGroupTextBox = new System.Windows.Forms.TextBox();
             this.currentOrientationDataGroupLabel = new System.Windows.Forms.Label();
@@ -95,7 +95,6 @@
             this.inputMoveListGroupLabel = new System.Windows.Forms.Label();
             this.moveNameMoveListGroupListBox = new System.Windows.Forms.ListBox();
             this.moveInputMoveListGroupListBox = new System.Windows.Forms.ListBox();
-            this.gaveGroupBox = new System.Windows.Forms.GroupBox();
             this.tinyStickSerialPort = new System.IO.Ports.SerialPort(this.components);
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
             this.csvSaveFileDialogBox = new System.Windows.Forms.SaveFileDialog();
@@ -421,42 +420,50 @@
             this.plotsGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.plotsGroupBox.Name = "plotsGroupBox";
             this.plotsGroupBox.Padding = new System.Windows.Forms.Padding(4);
-            this.plotsGroupBox.Size = new System.Drawing.Size(548, 281);
+            this.plotsGroupBox.Size = new System.Drawing.Size(1203, 281);
             this.plotsGroupBox.TabIndex = 1;
             this.plotsGroupBox.TabStop = false;
             this.plotsGroupBox.Text = "Plots";
             // 
             // rawDataChart
             // 
-            chartArea6.Name = "ChartArea1";
-            this.rawDataChart.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend";
-            this.rawDataChart.Legends.Add(legend6);
+            chartArea1.Area3DStyle.Inclination = 20;
+            chartArea1.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic;
+            chartArea1.Area3DStyle.Rotation = 10;
+            chartArea1.AxisX.LineColor = System.Drawing.Color.White;
+            chartArea1.AxisX.Title = "Data Point #";
+            chartArea1.AxisY.Title = "Raw Acceleration";
+            chartArea1.BackColor = System.Drawing.Color.DarkSlateGray;
+            chartArea1.Name = "ChartArea1";
+            this.rawDataChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend";
+            this.rawDataChart.Legends.Add(legend1);
             this.rawDataChart.Location = new System.Drawing.Point(10, 22);
             this.rawDataChart.Name = "rawDataChart";
-            series16.ChartArea = "ChartArea1";
-            series16.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series16.IsXValueIndexed = true;
-            series16.Legend = "Legend";
-            series16.Name = "Raw X";
-            series16.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            series16.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            series17.ChartArea = "ChartArea1";
-            series17.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series17.IsXValueIndexed = true;
-            series17.Legend = "Legend";
-            series17.Name = "Raw Y";
-            series17.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            series18.ChartArea = "ChartArea1";
-            series18.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series18.IsXValueIndexed = true;
-            series18.Legend = "Legend";
-            series18.Name = "Raw Z";
-            series18.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            this.rawDataChart.Series.Add(series16);
-            this.rawDataChart.Series.Add(series17);
-            this.rawDataChart.Series.Add(series18);
-            this.rawDataChart.Size = new System.Drawing.Size(520, 252);
+            this.rawDataChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.IsXValueIndexed = true;
+            series1.Legend = "Legend";
+            series1.Name = "Raw X";
+            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.IsXValueIndexed = true;
+            series2.Legend = "Legend";
+            series2.Name = "Raw Y";
+            series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.IsXValueIndexed = true;
+            series3.Legend = "Legend";
+            series3.Name = "Raw Z";
+            series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            this.rawDataChart.Series.Add(series1);
+            this.rawDataChart.Series.Add(series2);
+            this.rawDataChart.Series.Add(series3);
+            this.rawDataChart.Size = new System.Drawing.Size(1186, 252);
             this.rawDataChart.TabIndex = 0;
             this.rawDataChart.Text = "Raw Data";
             this.rawDataChart.Click += new System.EventHandler(this.rawDataChart_Click);
@@ -750,17 +757,6 @@
             this.moveInputMoveListGroupListBox.TabIndex = 0;
             this.moveInputMoveListGroupListBox.SelectedIndexChanged += new System.EventHandler(this.moveInputMoveListGroupListBox_SelectedIndexChanged);
             // 
-            // gaveGroupBox
-            // 
-            this.gaveGroupBox.Location = new System.Drawing.Point(575, 306);
-            this.gaveGroupBox.Margin = new System.Windows.Forms.Padding(4);
-            this.gaveGroupBox.Name = "gaveGroupBox";
-            this.gaveGroupBox.Padding = new System.Windows.Forms.Padding(4);
-            this.gaveGroupBox.Size = new System.Drawing.Size(645, 279);
-            this.gaveGroupBox.TabIndex = 5;
-            this.gaveGroupBox.TabStop = false;
-            this.gaveGroupBox.Text = "Game";
-            // 
             // tinyStickSerialPort
             // 
             this.tinyStickSerialPort.BaudRate = 128000;
@@ -794,7 +790,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1236, 601);
-            this.Controls.Add(this.gaveGroupBox);
             this.Controls.Add(this.moveListGroupBox);
             this.Controls.Add(this.movesGroupBox);
             this.Controls.Add(this.plotsGroupBox);
@@ -821,7 +816,6 @@
         private System.Windows.Forms.GroupBox plotsGroupBox;
         private System.Windows.Forms.GroupBox movesGroupBox;
         private System.Windows.Forms.GroupBox moveListGroupBox;
-        private System.Windows.Forms.GroupBox gaveGroupBox;
         private System.Windows.Forms.Button calibrateButton;
         private System.Windows.Forms.Button connectButton;
         private System.Windows.Forms.ComboBox portSelectionComboBox;
