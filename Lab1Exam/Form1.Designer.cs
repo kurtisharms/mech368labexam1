@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series16 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series17 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series18 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.dataGroupBox = new System.Windows.Forms.GroupBox();
             this.currentOrientationDataGroupTextBox = new System.Windows.Forms.TextBox();
             this.currentOrientationDataGroupLabel = new System.Windows.Forms.Label();
@@ -99,6 +99,8 @@
             this.tinyStickSerialPort = new System.IO.Ports.SerialPort(this.components);
             this.updateTimer = new System.Windows.Forms.Timer(this.components);
             this.csvSaveFileDialogBox = new System.Windows.Forms.SaveFileDialog();
+            this.StartGestureReadingTimer = new System.Windows.Forms.Timer(this.components);
+            this.ClearGestureReadingTimer = new System.Windows.Forms.Timer(this.components);
             this.dataGroupBox.SuspendLayout();
             this.plotsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rawDataChart)).BeginInit();
@@ -426,34 +428,34 @@
             // 
             // rawDataChart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.rawDataChart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend";
-            this.rawDataChart.Legends.Add(legend1);
+            chartArea6.Name = "ChartArea1";
+            this.rawDataChart.ChartAreas.Add(chartArea6);
+            legend6.Name = "Legend";
+            this.rawDataChart.Legends.Add(legend6);
             this.rawDataChart.Location = new System.Drawing.Point(10, 22);
             this.rawDataChart.Name = "rawDataChart";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.IsXValueIndexed = true;
-            series1.Legend = "Legend";
-            series1.Name = "Raw X";
-            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.IsXValueIndexed = true;
-            series2.Legend = "Legend";
-            series2.Name = "Raw Y";
-            series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.IsXValueIndexed = true;
-            series3.Legend = "Legend";
-            series3.Name = "Raw Z";
-            series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            this.rawDataChart.Series.Add(series1);
-            this.rawDataChart.Series.Add(series2);
-            this.rawDataChart.Series.Add(series3);
+            series16.ChartArea = "ChartArea1";
+            series16.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series16.IsXValueIndexed = true;
+            series16.Legend = "Legend";
+            series16.Name = "Raw X";
+            series16.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            series16.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            series17.ChartArea = "ChartArea1";
+            series17.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series17.IsXValueIndexed = true;
+            series17.Legend = "Legend";
+            series17.Name = "Raw Y";
+            series17.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            series18.ChartArea = "ChartArea1";
+            series18.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series18.IsXValueIndexed = true;
+            series18.Legend = "Legend";
+            series18.Name = "Raw Z";
+            series18.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            this.rawDataChart.Series.Add(series16);
+            this.rawDataChart.Series.Add(series17);
+            this.rawDataChart.Series.Add(series18);
             this.rawDataChart.Size = new System.Drawing.Size(520, 252);
             this.rawDataChart.TabIndex = 0;
             this.rawDataChart.Text = "Raw Data";
@@ -512,6 +514,7 @@
             this.clearHistoryMovesGroupButton.TabIndex = 18;
             this.clearHistoryMovesGroupButton.Text = "Clear History";
             this.clearHistoryMovesGroupButton.UseVisualStyleBackColor = true;
+            this.clearHistoryMovesGroupButton.Click += new System.EventHandler(this.clearHistoryMovesGroupButton_Click);
             // 
             // saveHistoryMovesGroupButton
             // 
@@ -521,6 +524,7 @@
             this.saveHistoryMovesGroupButton.TabIndex = 17;
             this.saveHistoryMovesGroupButton.Text = "Save History";
             this.saveHistoryMovesGroupButton.UseVisualStyleBackColor = true;
+            this.saveHistoryMovesGroupButton.Click += new System.EventHandler(this.saveHistoryMovesGroupButton_Click);
             // 
             // historyMovesGroupListBox
             // 
@@ -764,6 +768,7 @@
             // 
             // updateTimer
             // 
+            this.updateTimer.Interval = 25;
             this.updateTimer.Tick += new System.EventHandler(this.updateTimer_Tick);
             // 
             // csvSaveFileDialogBox
@@ -773,6 +778,16 @@
             this.csvSaveFileDialogBox.Filter = "CSV Files (*.csv)|*csv";
             this.csvSaveFileDialogBox.RestoreDirectory = true;
             this.csvSaveFileDialogBox.Title = "Save as CSV File";
+            // 
+            // StartGestureReadingTimer
+            // 
+            this.StartGestureReadingTimer.Interval = 500;
+            this.StartGestureReadingTimer.Tick += new System.EventHandler(this.StartGestureReadingTimer_Tick);
+            // 
+            // ClearGestureReadingTimer
+            // 
+            this.ClearGestureReadingTimer.Interval = 101;
+            this.ClearGestureReadingTimer.Tick += new System.EventHandler(this.ClearGestureReadingTimer_Tick);
             // 
             // MainForm
             // 
@@ -867,6 +882,8 @@
         private System.Windows.Forms.SaveFileDialog csvSaveFileDialogBox;
         private System.Windows.Forms.TextBox currentOrientationDataGroupTextBox;
         private System.Windows.Forms.Label currentOrientationDataGroupLabel;
+        private System.Windows.Forms.Timer StartGestureReadingTimer;
+        private System.Windows.Forms.Timer ClearGestureReadingTimer;
     }
 }
 

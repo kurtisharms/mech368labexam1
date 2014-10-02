@@ -26,6 +26,11 @@ namespace Lab1Exam
         int yAxis = -1;
         int zAxis = -1;
 
+        bool isGestureReading = false;
+        bool isInGesture = false;
+
+        int timeToClear = 2000;
+
         int xAxisCalibration = -1;
         int yAxisCalibration = -1;
         int zAxisCalibration = -1;
@@ -33,6 +38,10 @@ namespace Lab1Exam
         double xMean = -1;
         double yMean = -1;
         double zMean = -1;
+
+        // Current list of moves inputted
+        string currentMoveInputted = "";
+        string movesInputted = "";
 
         public MainForm()
         {
@@ -159,7 +168,13 @@ namespace Lab1Exam
             yMeanDataGroupTextBox.Text = getMean(100, yDataQueue).ToString();
             zMeanDataGroupTextBox.Text = getMean(100, zDataQueue).ToString();
 
+            // Update list of current gestures
+            inputMovesGroupTextBox.Text = currentMoveInputted;
+            performedMovesGroupTextBox.Text = movesInputted;
+            timeoutMovesGroupTextBox.Text = (((double)timeToClear) / 1000).ToString();
+
             updateCurrentOrientation();
+            handleGestures();
             updateRawDataChart();
         }
 
@@ -206,33 +221,36 @@ namespace Lab1Exam
 
         private void updateCurrentOrientation()
         {
-            string orientation = "Calibrate TinyStick";
-            int deltaX = xAxis - xAxisCalibration;
-            int deltaY = yAxis - yAxisCalibration;
-            int deltaZ = zAxis - yAxisCalibration;
+            string orientation = "Calibrate 1st";
+            if (xAxisCalibration != -1)
+            {
+                int deltaX = xAxis - xAxisCalibration;
+                int deltaY = yAxis - yAxisCalibration;
+                int deltaZ = zAxis - yAxisCalibration;
 
-            int diff = 25;
+                int diff = 25;
 
-            if (Math.Abs(deltaX) < diff) {
-                if (deltaY > 20)
-                    orientation = "face left";
-                else if (deltaY < -diff)
-                    orientation = "face right";
-                else if (deltaZ < -diff)
-                    orientation = "face down";
+                if (Math.Abs(deltaX) < diff)
+                {
+                    if (deltaY > 20)
+                        orientation = "face left";
+                    else if (deltaY < -diff)
+                        orientation = "face right";
+                    else if (deltaZ < -diff)
+                        orientation = "face down";
+                    else
+                        orientation = "face up";
+                }
+                else if (deltaX > diff)
+                {
+                    orientation = "face forwards";
+                }
                 else
-                    orientation = "face up";
-            }
-            else if (deltaX > diff)
-            {
-                orientation = "face forwards";
-            }
-            else
-            {
-                orientation = "face backwards";
+                {
+                    orientation = "face backwards";
+                }
             }
             currentOrientationDataGroupTextBox.Text = orientation;
-            
         }
 
         private void plusXMoveListGroupButton_Click(object sender, EventArgs e)
@@ -248,6 +266,74 @@ namespace Lab1Exam
         private void plusYMoveListGroupButton_Click(object sender, EventArgs e)
         {
             plusNewMove(sender);
+        }
+
+        private void handleGestures()
+        {
+            if (isGestureReading)
+            {
+                double margin = 45;
+
+                if (yAxis > 254-margin)
+                {
+                    registerInputGesture("-Y");
+                }
+                else if (yAxis < margin)
+                {
+                    registerInputGesture("+Y");
+                }
+                else if (xAxis > 254 - margin)
+                {
+                    registerInputGesture("-X");
+                }
+                else if (xAxis < margin)
+                {
+                    registerInputGesture("+X");
+                }
+                else if (zAxis > 254-margin*1.2)
+                {
+                    registerInputGesture("+Z");
+                }
+                else if (zAxis < margin*1.2)
+                {
+                    registerInputGesture("-Z");
+                }
+
+            }
+        }
+
+        private void registerInputGesture(string gesture)
+        {
+            // First stop reading new gestures
+            isGestureReading = false;
+            // Start reading new gestures in 1s
+            ClearGestureReadingTimer.Enabled = true;
+            StartGestureReadingTimer.Enabled = true;
+            StartGestureReadingTimer.Stop();
+            StartGestureReadingTimer.Start();
+
+            // Next stop the clear gesture reading timer
+            ClearGestureReadingTimer.Stop();
+
+            // Update the current move
+            currentMoveInputted = gesture;
+
+            if (movesInputted == "")
+            {
+                movesInputted = gesture;
+            }
+            else
+            {
+                movesInputted += "," + gesture;
+            }
+
+            string gestureName = getGestureName(movesInputted);
+            if (gestureName != "") {
+                GestureCompletedForm gcf = new GestureCompletedForm(gestureName, 1000);
+                gcf.Show();
+                historyMovesGroupListBox.Items.Add(gestureName + "\t-\t" + DateTime.Now.ToShortTimeString());
+                historyMovesGroupListBox.SelectedIndex = historyMovesGroupListBox.Items.Count - 1;
+            }
         }
 
         private void minusYMoveListGroupButton_Click(object sender, EventArgs e)
@@ -301,6 +387,9 @@ namespace Lab1Exam
             xAxisCalibration = xAxis;
             yAxisCalibration = yAxis;
             zAxisCalibration = zAxis;
+
+            // We can now gesture read!
+            isGestureReading = true;
         }
 
         
@@ -333,6 +422,65 @@ namespace Lab1Exam
                     queue.TryDequeue(out result);
             }
             return queue.Average();
+        }
+
+        private void ClearGestureReadingTimer_Tick(object sender, EventArgs e)
+        {
+            timeToClear -= ClearGestureReadingTimer.Interval;
+            if (timeToClear <= 0)
+            {
+                currentMoveInputted = "";
+                movesInputted = "";
+                ClearGestureReadingTimer.Stop();
+                timeToClear = 2000;
+            }
+        }
+
+        private void StartGestureReadingTimer_Tick(object sender, EventArgs e)
+        {
+            // Reset our current move to empty
+            currentMoveInputted = "";
+            // We are gesture reading again!
+            isGestureReading = true;
+            // Reset the gestures in 2s if nothing is entered
+            ClearGestureReadingTimer.Stop();
+            ClearGestureReadingTimer.Start();
+            // Stop this timer, since we are already reading
+            StartGestureReadingTimer.Stop();
+        }
+
+        private string getGestureName(string inputs)
+        {
+            for (int i = 0; i < moveInputMoveListGroupListBox.Items.Count; i++)
+            {
+                if (inputs.Equals(moveInputMoveListGroupListBox.Items[i].ToString()))
+                {
+                    return moveNameMoveListGroupListBox.Items[i].ToString() ;
+                }
+            }
+            return "";
+        }
+
+        private void clearHistoryMovesGroupButton_Click(object sender, EventArgs e)
+        {
+            historyMovesGroupListBox.Items.Clear();
+        }
+
+        private void saveHistoryMovesGroupButton_Click(object sender, EventArgs e)
+        {
+            StreamWriter outputFile;
+            csvSaveFileDialogBox.InitialDirectory = Application.StartupPath;
+            csvSaveFileDialogBox.ShowDialog();
+            outputFile = new StreamWriter(csvSaveFileDialogBox.FileName);
+            outputFile.WriteLine("move,time");
+            for (int i = 0; i < historyMovesGroupListBox.Items.Count; i++)
+            {
+                string moveName = historyMovesGroupListBox.Items[i].ToString().Split(',')[0].Trim();
+                string moveTime = historyMovesGroupListBox.Items[i].ToString().Split(',')[1].Trim();
+                outputFile.WriteLine(moveName + "," + moveTime);
+            }
+
+            outputFile.Close();
         }
     }
 }
