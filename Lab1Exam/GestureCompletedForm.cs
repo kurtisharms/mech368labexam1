@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using IrrKlang;
 
 namespace Lab1Exam
 {
@@ -33,6 +34,10 @@ namespace Lab1Exam
                 closeTimer.Enabled = true;
                 closeTimer.Start();
             }
+
+            // Play sounds now
+            ISoundEngine engine = new ISoundEngine();
+            
         }
 
         private void closeTimer_Tick(object sender, EventArgs e)
