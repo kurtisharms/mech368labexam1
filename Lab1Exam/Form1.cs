@@ -191,6 +191,9 @@ namespace Lab1Exam
             yMeanDataGroupTextBox.Text = yMean.ToString();
             zMeanDataGroupTextBox.Text = zMean.ToString();
 
+            // Update the full queue
+            fullQueueSizeDataGroupTextBox.Text = dataQueue.Count.ToString();
+
             // Update list of current gestures
             inputMovesGroupTextBox.Text = currentMoveInputted;
             performedMovesGroupTextBox.Text = movesInputted;
@@ -371,7 +374,7 @@ namespace Lab1Exam
             if (gestureName != "") {
                 GestureCompletedForm gcf = new GestureCompletedForm(gestureName, 1000);
                 gcf.Show();
-                historyMovesGroupListBox.Items.Add(gestureName + "\t-\t" + DateTime.Now.ToShortTimeString());
+                historyMovesGroupListBox.Items.Add(gestureName + " - " + DateTime.Now.ToShortTimeString());
                 historyMovesGroupListBox.SelectedIndex = historyMovesGroupListBox.Items.Count - 1;
             }
         }
@@ -398,11 +401,18 @@ namespace Lab1Exam
 
         private void createNewMoveMostListGroupButton_Click(object sender, EventArgs e)
         {
-            moveNameMoveListGroupListBox.Items.Add(newMoveNameMoveListGroupTextBox.Text);
-            moveInputMoveListGroupListBox.Items.Add(newMoveInputsMoveListGroupTextBox.Text);
+            if (newMoveNameMoveListGroupTextBox.Text != "" && newMoveInputsMoveListGroupTextBox.Text != "")
+            {
+                moveNameMoveListGroupListBox.Items.Add(newMoveNameMoveListGroupTextBox.Text);
+                moveInputMoveListGroupListBox.Items.Add(newMoveInputsMoveListGroupTextBox.Text);
 
-            newMoveNameMoveListGroupTextBox.Clear();
-            newMoveInputsMoveListGroupTextBox.Clear();
+                newMoveNameMoveListGroupTextBox.Clear();
+                newMoveInputsMoveListGroupTextBox.Clear();
+            }
+            else
+            {
+                MessageBox.Show("You must specify a non-empty move name and list of move gestures!", "Move cannt be empty!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void moveInputMoveListGroupListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -518,12 +528,17 @@ namespace Lab1Exam
             outputFile.WriteLine("move,time");
             for (int i = 0; i < historyMovesGroupListBox.Items.Count; i++)
             {
-                string moveName = historyMovesGroupListBox.Items[i].ToString().Split(',')[0].Trim();
-                string moveTime = historyMovesGroupListBox.Items[i].ToString().Split(',')[1].Trim();
+                string moveName = historyMovesGroupListBox.Items[i].ToString().Split('-')[0].Trim();
+                string moveTime = historyMovesGroupListBox.Items[i].ToString().Split('-')[1].Trim();
                 outputFile.WriteLine(moveName + "," + moveTime);
             }
 
             outputFile.Close();
+        }
+
+        private void bytesToReadDataGroupTextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

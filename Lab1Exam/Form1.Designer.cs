@@ -100,6 +100,8 @@
             this.csvSaveFileDialogBox = new System.Windows.Forms.SaveFileDialog();
             this.StartGestureReadingTimer = new System.Windows.Forms.Timer(this.components);
             this.ClearGestureReadingTimer = new System.Windows.Forms.Timer(this.components);
+            this.fullQueueSizeDataGroupLabel = new System.Windows.Forms.Label();
+            this.fullQueueSizeDataGroupTextBox = new System.Windows.Forms.TextBox();
             this.dataGroupBox.SuspendLayout();
             this.plotsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rawDataChart)).BeginInit();
@@ -109,6 +111,8 @@
             // 
             // dataGroupBox
             // 
+            this.dataGroupBox.Controls.Add(this.fullQueueSizeDataGroupTextBox);
+            this.dataGroupBox.Controls.Add(this.fullQueueSizeDataGroupLabel);
             this.dataGroupBox.Controls.Add(this.currentOrientationDataGroupTextBox);
             this.dataGroupBox.Controls.Add(this.currentOrientationDataGroupLabel);
             this.dataGroupBox.Controls.Add(this.clearDataDataGroupButton);
@@ -187,11 +191,12 @@
             // 
             // bytesToReadDataGroupTextBox
             // 
-            this.bytesToReadDataGroupTextBox.Location = new System.Drawing.Point(201, 220);
+            this.bytesToReadDataGroupTextBox.Location = new System.Drawing.Point(201, 227);
             this.bytesToReadDataGroupTextBox.Name = "bytesToReadDataGroupTextBox";
             this.bytesToReadDataGroupTextBox.ReadOnly = true;
             this.bytesToReadDataGroupTextBox.Size = new System.Drawing.Size(100, 22);
             this.bytesToReadDataGroupTextBox.TabIndex = 31;
+            this.bytesToReadDataGroupTextBox.TextChanged += new System.EventHandler(this.bytesToReadDataGroupTextBox_TextChanged);
             // 
             // zQueueDataGroupTextBox
             // 
@@ -322,7 +327,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(4, 223);
+            this.label7.Location = new System.Drawing.Point(7, 227);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(94, 17);
             this.label7.TabIndex = 9;
@@ -794,6 +799,23 @@
             this.ClearGestureReadingTimer.Interval = 101;
             this.ClearGestureReadingTimer.Tick += new System.EventHandler(this.ClearGestureReadingTimer_Tick);
             // 
+            // fullQueueSizeDataGroupLabel
+            // 
+            this.fullQueueSizeDataGroupLabel.AutoSize = true;
+            this.fullQueueSizeDataGroupLabel.Location = new System.Drawing.Point(7, 199);
+            this.fullQueueSizeDataGroupLabel.Name = "fullQueueSizeDataGroupLabel";
+            this.fullQueueSizeDataGroupLabel.Size = new System.Drawing.Size(108, 17);
+            this.fullQueueSizeDataGroupLabel.TabIndex = 36;
+            this.fullQueueSizeDataGroupLabel.Text = "Full Queue Size";
+            // 
+            // fullQueueSizeDataGroupTextBox
+            // 
+            this.fullQueueSizeDataGroupTextBox.Location = new System.Drawing.Point(201, 199);
+            this.fullQueueSizeDataGroupTextBox.Name = "fullQueueSizeDataGroupTextBox";
+            this.fullQueueSizeDataGroupTextBox.ReadOnly = true;
+            this.fullQueueSizeDataGroupTextBox.Size = new System.Drawing.Size(100, 22);
+            this.fullQueueSizeDataGroupTextBox.TabIndex = 37;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -887,6 +909,8 @@
         private System.Windows.Forms.Label currentOrientationDataGroupLabel;
         private System.Windows.Forms.Timer StartGestureReadingTimer;
         private System.Windows.Forms.Timer ClearGestureReadingTimer;
+        private System.Windows.Forms.TextBox fullQueueSizeDataGroupTextBox;
+        private System.Windows.Forms.Label fullQueueSizeDataGroupLabel;
     }
 }
 
