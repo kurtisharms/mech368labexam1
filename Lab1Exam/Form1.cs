@@ -40,6 +40,10 @@ namespace Lab1Exam
         double yMean = -1;
         double zMean = -1;
 
+        // Sounds
+        ISound bgMusic;
+        ISound explosion;
+
         // Current list of moves inputted
         string currentMoveInputted = "";
         string movesInputted = "";
@@ -57,7 +61,7 @@ namespace Lab1Exam
 
             // Play sound
             ISoundEngine engine = new ISoundEngine();
-            ISound bgMusic = engine.Play2D("./Resources/electromania118.wav", true, false, StreamMode.AutoDetect, true);
+            bgMusic = engine.Play2D("./Resources/electromania118.wav", true, false, StreamMode.AutoDetect, true);
             bgMusic.Volume *= (float) 0.5;
             if (bgMusic != null)
             {
@@ -356,23 +360,25 @@ namespace Lab1Exam
                 movesInputted += "," + gesture;
             }
 
-            // Play sound
-            ISoundEngine engine = new ISoundEngine();
-            ISound bgMusic = engine.Play2D("./Resources/explosion.wav", false, false, StreamMode.AutoDetect, true);
-            bgMusic.Volume *= (float)0.5;
-            if (bgMusic != null)
+            // Play sound if sound is enabled
+            if (newGestureSoundGroupCheckBox.Checked)
             {
-                ISoundEffectControl fx = bgMusic.SoundEffectControl;
-                if (fx != null)
+                ISoundEngine engine = new ISoundEngine();
+                explosion = engine.Play2D("./Resources/explosion.wav", false, false, StreamMode.AutoDetect, true);
+                if (explosion != null)
                 {
-                    fx.EnableEchoSoundEffect();
+                    ISoundEffectControl fx = explosion.SoundEffectControl;
+                    if (fx != null)
+                    {
+                        fx.EnableEchoSoundEffect();
+                    }
                 }
             }
             
             // Have we completed a full move of gestures? If so, display the completion form!
             string gestureName = getGestureName(movesInputted);
             if (gestureName != "") {
-                GestureCompletedForm gcf = new GestureCompletedForm(gestureName, 1000);
+                GestureCompletedForm gcf = new GestureCompletedForm(gestureName, 1000, newMoveSoundGroupCheckBox.Checked);
                 gcf.Show();
                 historyMovesGroupListBox.Items.Add(gestureName + " - " + DateTime.Now.ToShortTimeString());
                 historyMovesGroupListBox.SelectedIndex = historyMovesGroupListBox.Items.Count - 1;
@@ -537,6 +543,33 @@ namespace Lab1Exam
         }
 
         private void bytesToReadDataGroupTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void backgroundSoundSoundGroupCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!backgroundSoundSoundGroupCheckBox.Checked)
+            {
+                bgMusic.Volume = 0;
+            }
+            else
+            {
+                bgMusic.Volume = (float) 0.5;
+            }
+        }
+
+        private void newGestureSoundGroupCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void newMoveSoundGroupCheckBox_CheckedChanged(object sender, EventArgs e)
         {
 
         }

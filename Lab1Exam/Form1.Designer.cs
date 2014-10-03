@@ -102,11 +102,16 @@
             this.ClearGestureReadingTimer = new System.Windows.Forms.Timer(this.components);
             this.fullQueueSizeDataGroupLabel = new System.Windows.Forms.Label();
             this.fullQueueSizeDataGroupTextBox = new System.Windows.Forms.TextBox();
+            this.soundGroupBox = new System.Windows.Forms.GroupBox();
+            this.backgroundSoundSoundGroupCheckBox = new System.Windows.Forms.CheckBox();
+            this.newGestureSoundGroupCheckBox = new System.Windows.Forms.CheckBox();
+            this.newMoveSoundGroupCheckBox = new System.Windows.Forms.CheckBox();
             this.dataGroupBox.SuspendLayout();
             this.plotsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rawDataChart)).BeginInit();
             this.movesGroupBox.SuspendLayout();
             this.moveListGroupBox.SuspendLayout();
+            this.soundGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGroupBox
@@ -425,7 +430,7 @@
             this.plotsGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this.plotsGroupBox.Name = "plotsGroupBox";
             this.plotsGroupBox.Padding = new System.Windows.Forms.Padding(4);
-            this.plotsGroupBox.Size = new System.Drawing.Size(1203, 281);
+            this.plotsGroupBox.Size = new System.Drawing.Size(1016, 281);
             this.plotsGroupBox.TabIndex = 1;
             this.plotsGroupBox.TabStop = false;
             this.plotsGroupBox.Text = "Plots";
@@ -451,25 +456,25 @@
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series1.IsXValueIndexed = true;
             series1.Legend = "Legend";
-            series1.Name = "Raw X";
+            series1.Name = "X";
             series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series2.IsXValueIndexed = true;
             series2.Legend = "Legend";
-            series2.Name = "Raw Y";
+            series2.Name = "Y";
             series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             series3.ChartArea = "ChartArea1";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series3.IsXValueIndexed = true;
             series3.Legend = "Legend";
-            series3.Name = "Raw Z";
+            series3.Name = "Z";
             series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             this.rawDataChart.Series.Add(series1);
             this.rawDataChart.Series.Add(series2);
             this.rawDataChart.Series.Add(series3);
-            this.rawDataChart.Size = new System.Drawing.Size(1186, 252);
+            this.rawDataChart.Size = new System.Drawing.Size(987, 252);
             this.rawDataChart.TabIndex = 0;
             this.rawDataChart.Text = "Raw Data";
             this.rawDataChart.Click += new System.EventHandler(this.rawDataChart_Click);
@@ -816,11 +821,63 @@
             this.fullQueueSizeDataGroupTextBox.Size = new System.Drawing.Size(100, 22);
             this.fullQueueSizeDataGroupTextBox.TabIndex = 37;
             // 
+            // soundGroupBox
+            // 
+            this.soundGroupBox.Controls.Add(this.newMoveSoundGroupCheckBox);
+            this.soundGroupBox.Controls.Add(this.newGestureSoundGroupCheckBox);
+            this.soundGroupBox.Controls.Add(this.backgroundSoundSoundGroupCheckBox);
+            this.soundGroupBox.Location = new System.Drawing.Point(1042, 305);
+            this.soundGroupBox.Name = "soundGroupBox";
+            this.soundGroupBox.Size = new System.Drawing.Size(182, 274);
+            this.soundGroupBox.TabIndex = 4;
+            this.soundGroupBox.TabStop = false;
+            this.soundGroupBox.Text = "Sound";
+            // 
+            // backgroundSoundSoundGroupCheckBox
+            // 
+            this.backgroundSoundSoundGroupCheckBox.AutoSize = true;
+            this.backgroundSoundSoundGroupCheckBox.Checked = true;
+            this.backgroundSoundSoundGroupCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.backgroundSoundSoundGroupCheckBox.Location = new System.Drawing.Point(6, 31);
+            this.backgroundSoundSoundGroupCheckBox.Name = "backgroundSoundSoundGroupCheckBox";
+            this.backgroundSoundSoundGroupCheckBox.Size = new System.Drawing.Size(146, 21);
+            this.backgroundSoundSoundGroupCheckBox.TabIndex = 0;
+            this.backgroundSoundSoundGroupCheckBox.Text = "Background Music";
+            this.backgroundSoundSoundGroupCheckBox.UseVisualStyleBackColor = true;
+            this.backgroundSoundSoundGroupCheckBox.CheckedChanged += new System.EventHandler(this.backgroundSoundSoundGroupCheckBox_CheckedChanged);
+            // 
+            // newGestureSoundGroupCheckBox
+            // 
+            this.newGestureSoundGroupCheckBox.AutoSize = true;
+            this.newGestureSoundGroupCheckBox.Checked = true;
+            this.newGestureSoundGroupCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.newGestureSoundGroupCheckBox.Location = new System.Drawing.Point(6, 58);
+            this.newGestureSoundGroupCheckBox.Name = "newGestureSoundGroupCheckBox";
+            this.newGestureSoundGroupCheckBox.Size = new System.Drawing.Size(132, 21);
+            this.newGestureSoundGroupCheckBox.TabIndex = 1;
+            this.newGestureSoundGroupCheckBox.Text = "Input Completed";
+            this.newGestureSoundGroupCheckBox.UseVisualStyleBackColor = true;
+            this.newGestureSoundGroupCheckBox.CheckedChanged += new System.EventHandler(this.newGestureSoundGroupCheckBox_CheckedChanged);
+            // 
+            // newMoveSoundGroupCheckBox
+            // 
+            this.newMoveSoundGroupCheckBox.AutoSize = true;
+            this.newMoveSoundGroupCheckBox.Checked = true;
+            this.newMoveSoundGroupCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.newMoveSoundGroupCheckBox.Location = new System.Drawing.Point(6, 85);
+            this.newMoveSoundGroupCheckBox.Name = "newMoveSoundGroupCheckBox";
+            this.newMoveSoundGroupCheckBox.Size = new System.Drawing.Size(135, 21);
+            this.newMoveSoundGroupCheckBox.TabIndex = 2;
+            this.newMoveSoundGroupCheckBox.Text = "Move Completed";
+            this.newMoveSoundGroupCheckBox.UseVisualStyleBackColor = true;
+            this.newMoveSoundGroupCheckBox.CheckedChanged += new System.EventHandler(this.newMoveSoundGroupCheckBox_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1236, 601);
+            this.Controls.Add(this.soundGroupBox);
             this.Controls.Add(this.moveListGroupBox);
             this.Controls.Add(this.movesGroupBox);
             this.Controls.Add(this.plotsGroupBox);
@@ -829,6 +886,7 @@
             this.Name = "MainForm";
             this.Text = "MECH 368 Lab 1 Exam - Kurtis Harms";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.dataGroupBox.ResumeLayout(false);
             this.dataGroupBox.PerformLayout();
             this.plotsGroupBox.ResumeLayout(false);
@@ -837,6 +895,8 @@
             this.movesGroupBox.PerformLayout();
             this.moveListGroupBox.ResumeLayout(false);
             this.moveListGroupBox.PerformLayout();
+            this.soundGroupBox.ResumeLayout(false);
+            this.soundGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -911,6 +971,10 @@
         private System.Windows.Forms.Timer ClearGestureReadingTimer;
         private System.Windows.Forms.TextBox fullQueueSizeDataGroupTextBox;
         private System.Windows.Forms.Label fullQueueSizeDataGroupLabel;
+        private System.Windows.Forms.GroupBox soundGroupBox;
+        private System.Windows.Forms.CheckBox newMoveSoundGroupCheckBox;
+        private System.Windows.Forms.CheckBox newGestureSoundGroupCheckBox;
+        private System.Windows.Forms.CheckBox backgroundSoundSoundGroupCheckBox;
     }
 }
 

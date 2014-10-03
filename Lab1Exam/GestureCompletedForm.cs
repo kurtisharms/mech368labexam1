@@ -15,15 +15,17 @@ namespace Lab1Exam
     {
         string message = "";
         int timeout = 0;
+        bool playSound = true;
         public GestureCompletedForm()
         {
             InitializeComponent();
         }
-        public GestureCompletedForm(string message, int timeout)
+        public GestureCompletedForm(string message, int timeout, bool playSound)
         {
             InitializeComponent();
             this.message = message;
             this.timeout = timeout;
+            this.playSound = playSound;
         }
 
         private void GestureCompletedForm_Load(object sender, EventArgs e)
@@ -35,10 +37,12 @@ namespace Lab1Exam
                 closeTimer.Start();
             }
 
-            // Play sounds now
-            ISoundEngine engine = new ISoundEngine();
-            engine.Play2D("./Resources/BEEP2.wav");
-            
+            if (playSound)
+            {
+                // Play sounds now
+                ISoundEngine engine = new ISoundEngine();
+                engine.Play2D("./Resources/BEEP2.wav");
+            }
         }
 
         private void closeTimer_Tick(object sender, EventArgs e)
