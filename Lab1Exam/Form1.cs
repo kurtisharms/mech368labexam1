@@ -164,9 +164,12 @@ namespace Lab1Exam
             zQueueDataGroupTextBox.Text = zDataQueue.Count.ToString();
 
             // Update last 100 mean values
-            xMeanDataGroupTextBox.Text = getMean(100, xDataQueue).ToString();
-            yMeanDataGroupTextBox.Text = getMean(100, yDataQueue).ToString();
-            zMeanDataGroupTextBox.Text = getMean(100, zDataQueue).ToString();
+            xMean = getMean(100, xDataQueue);
+            yMean = getMean(100, yDataQueue);
+            zMean = getMean(100, zDataQueue);
+            xMeanDataGroupTextBox.Text = xMean.ToString();
+            yMeanDataGroupTextBox.Text = yMean.ToString();
+            zMeanDataGroupTextBox.Text = zMean.ToString();
 
             // Update list of current gestures
             inputMovesGroupTextBox.Text = currentMoveInputted;
@@ -272,13 +275,13 @@ namespace Lab1Exam
         {
             if (isGestureReading)
             {
-                double margin = 45;
+                double margin = 65;
 
-                if (yAxis > 254-margin)
+                if (yAxis > 254-margin*0.9)
                 {
                     registerInputGesture("-Y");
                 }
-                else if (yAxis < margin)
+                else if (yAxis < margin*0.9)
                 {
                     registerInputGesture("+Y");
                 }
@@ -290,11 +293,11 @@ namespace Lab1Exam
                 {
                     registerInputGesture("+X");
                 }
-                else if (zAxis > 254-margin*1.2)
+                else if (zAxis > 254-margin*0.6)
                 {
                     registerInputGesture("+Z");
                 }
-                else if (zAxis < margin*1.2)
+                else if (zAxis < margin*1.1)
                 {
                     registerInputGesture("-Z");
                 }

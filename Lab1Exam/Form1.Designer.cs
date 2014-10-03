@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.dataGroupBox = new System.Windows.Forms.GroupBox();
             this.currentOrientationDataGroupTextBox = new System.Windows.Forms.TextBox();
             this.currentOrientationDataGroupLabel = new System.Windows.Forms.Label();
@@ -195,7 +195,7 @@
             // 
             // zQueueDataGroupTextBox
             // 
-            this.zQueueDataGroupTextBox.Location = new System.Drawing.Point(240, 183);
+            this.zQueueDataGroupTextBox.Location = new System.Drawing.Point(240, 141);
             this.zQueueDataGroupTextBox.Name = "zQueueDataGroupTextBox";
             this.zQueueDataGroupTextBox.ReadOnly = true;
             this.zQueueDataGroupTextBox.Size = new System.Drawing.Size(61, 22);
@@ -203,7 +203,7 @@
             // 
             // yQueueDataGroupTextBox
             // 
-            this.yQueueDataGroupTextBox.Location = new System.Drawing.Point(240, 144);
+            this.yQueueDataGroupTextBox.Location = new System.Drawing.Point(240, 113);
             this.yQueueDataGroupTextBox.Name = "yQueueDataGroupTextBox";
             this.yQueueDataGroupTextBox.ReadOnly = true;
             this.yQueueDataGroupTextBox.Size = new System.Drawing.Size(61, 22);
@@ -211,7 +211,7 @@
             // 
             // xQueueDataGroupTextBox
             // 
-            this.xQueueDataGroupTextBox.Location = new System.Drawing.Point(240, 100);
+            this.xQueueDataGroupTextBox.Location = new System.Drawing.Point(240, 85);
             this.xQueueDataGroupTextBox.Name = "xQueueDataGroupTextBox";
             this.xQueueDataGroupTextBox.ReadOnly = true;
             this.xQueueDataGroupTextBox.Size = new System.Drawing.Size(61, 22);
@@ -219,7 +219,7 @@
             // 
             // zMeanDataGroupTextBox
             // 
-            this.zMeanDataGroupTextBox.Location = new System.Drawing.Point(162, 183);
+            this.zMeanDataGroupTextBox.Location = new System.Drawing.Point(162, 140);
             this.zMeanDataGroupTextBox.Name = "zMeanDataGroupTextBox";
             this.zMeanDataGroupTextBox.ReadOnly = true;
             this.zMeanDataGroupTextBox.Size = new System.Drawing.Size(61, 22);
@@ -227,7 +227,7 @@
             // 
             // yMeanDataGroupTextBox
             // 
-            this.yMeanDataGroupTextBox.Location = new System.Drawing.Point(162, 141);
+            this.yMeanDataGroupTextBox.Location = new System.Drawing.Point(162, 112);
             this.yMeanDataGroupTextBox.Name = "yMeanDataGroupTextBox";
             this.yMeanDataGroupTextBox.ReadOnly = true;
             this.yMeanDataGroupTextBox.Size = new System.Drawing.Size(61, 22);
@@ -235,7 +235,7 @@
             // 
             // xMeanDataGroupTextBox
             // 
-            this.xMeanDataGroupTextBox.Location = new System.Drawing.Point(162, 100);
+            this.xMeanDataGroupTextBox.Location = new System.Drawing.Point(162, 84);
             this.xMeanDataGroupTextBox.Name = "xMeanDataGroupTextBox";
             this.xMeanDataGroupTextBox.ReadOnly = true;
             this.xMeanDataGroupTextBox.Size = new System.Drawing.Size(61, 22);
@@ -243,7 +243,7 @@
             // 
             // zAccelerationDataGroupTextBox
             // 
-            this.zAccelerationDataGroupTextBox.Location = new System.Drawing.Point(92, 183);
+            this.zAccelerationDataGroupTextBox.Location = new System.Drawing.Point(92, 140);
             this.zAccelerationDataGroupTextBox.Name = "zAccelerationDataGroupTextBox";
             this.zAccelerationDataGroupTextBox.ReadOnly = true;
             this.zAccelerationDataGroupTextBox.Size = new System.Drawing.Size(61, 22);
@@ -251,7 +251,7 @@
             // 
             // yAccelerationDataGroupTextBox
             // 
-            this.yAccelerationDataGroupTextBox.Location = new System.Drawing.Point(92, 141);
+            this.yAccelerationDataGroupTextBox.Location = new System.Drawing.Point(92, 112);
             this.yAccelerationDataGroupTextBox.Name = "yAccelerationDataGroupTextBox";
             this.yAccelerationDataGroupTextBox.ReadOnly = true;
             this.yAccelerationDataGroupTextBox.Size = new System.Drawing.Size(61, 22);
@@ -259,7 +259,7 @@
             // 
             // xAccelerationDataGroupTextBox
             // 
-            this.xAccelerationDataGroupTextBox.Location = new System.Drawing.Point(92, 100);
+            this.xAccelerationDataGroupTextBox.Location = new System.Drawing.Point(92, 84);
             this.xAccelerationDataGroupTextBox.Name = "xAccelerationDataGroupTextBox";
             this.xAccelerationDataGroupTextBox.ReadOnly = true;
             this.xAccelerationDataGroupTextBox.Size = new System.Drawing.Size(61, 22);
@@ -340,7 +340,7 @@
             // xDataGroupLabel
             // 
             this.xDataGroupLabel.AutoSize = true;
-            this.xDataGroupLabel.Location = new System.Drawing.Point(7, 103);
+            this.xDataGroupLabel.Location = new System.Drawing.Point(7, 87);
             this.xDataGroupLabel.Name = "xDataGroupLabel";
             this.xDataGroupLabel.Size = new System.Drawing.Size(17, 17);
             this.xDataGroupLabel.TabIndex = 7;
@@ -349,7 +349,7 @@
             // yDataGroupLabel
             // 
             this.yDataGroupLabel.AutoSize = true;
-            this.yDataGroupLabel.Location = new System.Drawing.Point(7, 144);
+            this.yDataGroupLabel.Location = new System.Drawing.Point(7, 115);
             this.yDataGroupLabel.Name = "yDataGroupLabel";
             this.yDataGroupLabel.Size = new System.Drawing.Size(17, 17);
             this.yDataGroupLabel.TabIndex = 6;
@@ -367,11 +367,11 @@
             // zDataGroupLabel
             // 
             this.zDataGroupLabel.AutoSize = true;
-            this.zDataGroupLabel.Location = new System.Drawing.Point(4, 186);
+            this.zDataGroupLabel.Location = new System.Drawing.Point(6, 144);
             this.zDataGroupLabel.Name = "zDataGroupLabel";
-            this.zDataGroupLabel.Size = new System.Drawing.Size(17, 17);
+            this.zDataGroupLabel.Size = new System.Drawing.Size(22, 17);
             this.zDataGroupLabel.TabIndex = 4;
-            this.zDataGroupLabel.Text = "Z";
+            this.zDataGroupLabel.Text = "jm";
             // 
             // queueDataGroupLabel
             // 
@@ -427,42 +427,42 @@
             // 
             // rawDataChart
             // 
-            chartArea1.Area3DStyle.Inclination = 20;
-            chartArea1.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic;
-            chartArea1.Area3DStyle.Rotation = 10;
-            chartArea1.AxisX.LineColor = System.Drawing.Color.White;
-            chartArea1.AxisX.Title = "Data Point #";
-            chartArea1.AxisY.Title = "Raw Acceleration";
-            chartArea1.BackColor = System.Drawing.Color.DarkSlateGray;
-            chartArea1.Name = "ChartArea1";
-            this.rawDataChart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend";
-            this.rawDataChart.Legends.Add(legend1);
+            chartArea4.Area3DStyle.Inclination = 20;
+            chartArea4.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic;
+            chartArea4.Area3DStyle.Rotation = 10;
+            chartArea4.AxisX.LineColor = System.Drawing.Color.White;
+            chartArea4.AxisX.Title = "Data Point #";
+            chartArea4.AxisY.Title = "Raw Acceleration";
+            chartArea4.BackColor = System.Drawing.Color.DarkSlateGray;
+            chartArea4.Name = "ChartArea1";
+            this.rawDataChart.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend";
+            this.rawDataChart.Legends.Add(legend4);
             this.rawDataChart.Location = new System.Drawing.Point(10, 22);
             this.rawDataChart.Name = "rawDataChart";
             this.rawDataChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.IsXValueIndexed = true;
-            series1.Legend = "Legend";
-            series1.Name = "Raw X";
-            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.IsXValueIndexed = true;
-            series2.Legend = "Legend";
-            series2.Name = "Raw Y";
-            series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.IsXValueIndexed = true;
-            series3.Legend = "Legend";
-            series3.Name = "Raw Z";
-            series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            this.rawDataChart.Series.Add(series1);
-            this.rawDataChart.Series.Add(series2);
-            this.rawDataChart.Series.Add(series3);
+            series10.ChartArea = "ChartArea1";
+            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series10.IsXValueIndexed = true;
+            series10.Legend = "Legend";
+            series10.Name = "Raw X";
+            series10.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            series10.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            series11.ChartArea = "ChartArea1";
+            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series11.IsXValueIndexed = true;
+            series11.Legend = "Legend";
+            series11.Name = "Raw Y";
+            series11.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            series12.ChartArea = "ChartArea1";
+            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series12.IsXValueIndexed = true;
+            series12.Legend = "Legend";
+            series12.Name = "Raw Z";
+            series12.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            this.rawDataChart.Series.Add(series10);
+            this.rawDataChart.Series.Add(series11);
+            this.rawDataChart.Series.Add(series12);
             this.rawDataChart.Size = new System.Drawing.Size(1186, 252);
             this.rawDataChart.TabIndex = 0;
             this.rawDataChart.Text = "Raw Data";
@@ -777,7 +777,7 @@
             // 
             // StartGestureReadingTimer
             // 
-            this.StartGestureReadingTimer.Interval = 500;
+            this.StartGestureReadingTimer.Interval = 333;
             this.StartGestureReadingTimer.Tick += new System.EventHandler(this.StartGestureReadingTimer_Tick);
             // 
             // ClearGestureReadingTimer
