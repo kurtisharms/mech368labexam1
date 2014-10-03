@@ -90,6 +90,9 @@ namespace Lab1Exam
                     dataQueue = new ConcurrentQueue<int>();
                     connectButton.Text = "Connect";
                     updateTimer.Enabled = false;
+                    xAxisCalibration = -1;
+                    yAxisCalibration = -1;
+                    zAxisCalibration = -1;
                 }
             }
             catch (NullReferenceException)
@@ -337,6 +340,9 @@ namespace Lab1Exam
 
             // Update the current move
             currentMoveInputted = gesture;
+
+            // Reset the time left to complete the gesture move
+            timeToClear = 2000;
 
             if (movesInputted == "")
             {

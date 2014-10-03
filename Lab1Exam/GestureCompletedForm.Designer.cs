@@ -29,33 +29,34 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.gestureCompletedMessageTextBox = new System.Windows.Forms.TextBox();
             this.closeTimer = new System.Windows.Forms.Timer(this.components);
+            this.gestureCompletedMessageLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // gestureCompletedMessageTextBox
-            // 
-            this.gestureCompletedMessageTextBox.BackColor = System.Drawing.Color.Khaki;
-            this.gestureCompletedMessageTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gestureCompletedMessageTextBox.ForeColor = System.Drawing.Color.Firebrick;
-            this.gestureCompletedMessageTextBox.Location = new System.Drawing.Point(-1, 152);
-            this.gestureCompletedMessageTextBox.Name = "gestureCompletedMessageTextBox";
-            this.gestureCompletedMessageTextBox.ReadOnly = true;
-            this.gestureCompletedMessageTextBox.Size = new System.Drawing.Size(602, 75);
-            this.gestureCompletedMessageTextBox.TabIndex = 0;
-            this.gestureCompletedMessageTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // closeTimer
             // 
             this.closeTimer.Tick += new System.EventHandler(this.closeTimer_Tick);
             // 
+            // gestureCompletedMessageLabel
+            // 
+            this.gestureCompletedMessageLabel.AutoSize = true;
+            this.gestureCompletedMessageLabel.Font = new System.Drawing.Font("Candara", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gestureCompletedMessageLabel.ForeColor = System.Drawing.Color.White;
+            this.gestureCompletedMessageLabel.Location = new System.Drawing.Point(1, 147);
+            this.gestureCompletedMessageLabel.MinimumSize = new System.Drawing.Size(600, 0);
+            this.gestureCompletedMessageLabel.Name = "gestureCompletedMessageLabel";
+            this.gestureCompletedMessageLabel.Size = new System.Drawing.Size(600, 73);
+            this.gestureCompletedMessageLabel.TabIndex = 0;
+            this.gestureCompletedMessageLabel.Text = "TEST";
+            this.gestureCompletedMessageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // GestureCompletedForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Khaki;
+            this.BackColor = System.Drawing.Color.DarkSlateGray;
             this.ClientSize = new System.Drawing.Size(600, 400);
-            this.Controls.Add(this.gestureCompletedMessageTextBox);
+            this.Controls.Add(this.gestureCompletedMessageLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GestureCompletedForm";
             this.ShowIcon = false;
@@ -72,7 +73,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox gestureCompletedMessageTextBox;
         private System.Windows.Forms.Timer closeTimer;
+        private System.Windows.Forms.Label gestureCompletedMessageLabel;
     }
 }

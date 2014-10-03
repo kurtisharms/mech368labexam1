@@ -28,7 +28,7 @@ namespace Lab1Exam
 
         private void GestureCompletedForm_Load(object sender, EventArgs e)
         {
-            gestureCompletedMessageTextBox.Text = message;
+            gestureCompletedMessageLabel.Text = message;
             if (timeout != 0) {
                 closeTimer.Interval = timeout;
                 closeTimer.Enabled = true;
