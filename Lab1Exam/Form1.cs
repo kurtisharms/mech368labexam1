@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections.Concurrent;
 using System.IO;
+using IrrKlang;
 
 namespace Lab1Exam
 {
@@ -53,6 +54,22 @@ namespace Lab1Exam
 
             rawDataChart.ChartAreas[0].AxisY.Minimum = 0;
             rawDataChart.ChartAreas[0].AxisY.Maximum = 254;
+
+            // Play sound
+            ISoundEngine engine = new ISoundEngine();
+            ISound bgMusic = engine.Play2D("./Resources/electromania118.wav", true, false, StreamMode.AutoDetect, true);
+            bgMusic.Volume *= (float) 0.5;
+            if (bgMusic != null)
+            {
+                ISoundEffectControl fx = bgMusic.SoundEffectControl;
+                if (fx != null)
+                {
+                    fx.EnableWavesReverbSoundEffect();
+                }
+            }
+
+
+            
         }
 
         private void connectButton_Click(object sender, EventArgs e)
@@ -330,6 +347,20 @@ namespace Lab1Exam
                 movesInputted += "," + gesture;
             }
 
+            // Play sound
+            ISoundEngine engine = new ISoundEngine();
+            ISound bgMusic = engine.Play2D("./Resources/explosion.wav", false, false, StreamMode.AutoDetect, true);
+            bgMusic.Volume *= (float)0.5;
+            if (bgMusic != null)
+            {
+                ISoundEffectControl fx = bgMusic.SoundEffectControl;
+                if (fx != null)
+                {
+                    fx.EnableEchoSoundEffect();
+                }
+            }
+            
+            // Have we completed a full move of gestures? If so, display the completion form!
             string gestureName = getGestureName(movesInputted);
             if (gestureName != "") {
                 GestureCompletedForm gcf = new GestureCompletedForm(gestureName, 1000);

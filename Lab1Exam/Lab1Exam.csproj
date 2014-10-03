@@ -47,7 +47,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="irrKlang.NET4">
+    <Reference Include="irrKlang.NET4, Version=1.0.5235.17346, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Downloads\irrKlang-32bit-1.5.0\irrKlang-1.5.0\bin\dotnet-4\irrKlang.NET4.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -139,6 +140,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ophelia.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\electromania118.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\laserblast.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CY0010.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CB.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SD0010.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CL.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BEEP2.WAV" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\APPLAUSE.WAV" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ELDRUM44.WAV" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\electromania118.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

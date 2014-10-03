@@ -118,8 +118,20 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="APPLAUSE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\APPLAUSE.WAV;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BEEP2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\BEEP2.WAV;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="bell" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\bell.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ELDRUM44" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\ELDRUM44.WAV;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="electromania1181" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\electromania118.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="explosion" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\explosion.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

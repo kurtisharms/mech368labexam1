@@ -37,6 +37,7 @@ namespace Lab1Exam
 
             // Play sounds now
             ISoundEngine engine = new ISoundEngine();
+            engine.Play2D("./Resources/BEEP2.wav");
             
         }
 

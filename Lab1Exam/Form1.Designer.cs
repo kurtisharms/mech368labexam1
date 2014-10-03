@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.dataGroupBox = new System.Windows.Forms.GroupBox();
             this.currentOrientationDataGroupTextBox = new System.Windows.Forms.TextBox();
             this.currentOrientationDataGroupLabel = new System.Windows.Forms.Label();
@@ -369,9 +369,9 @@
             this.zDataGroupLabel.AutoSize = true;
             this.zDataGroupLabel.Location = new System.Drawing.Point(6, 144);
             this.zDataGroupLabel.Name = "zDataGroupLabel";
-            this.zDataGroupLabel.Size = new System.Drawing.Size(22, 17);
+            this.zDataGroupLabel.Size = new System.Drawing.Size(17, 17);
             this.zDataGroupLabel.TabIndex = 4;
-            this.zDataGroupLabel.Text = "jm";
+            this.zDataGroupLabel.Text = "Z";
             // 
             // queueDataGroupLabel
             // 
@@ -427,42 +427,42 @@
             // 
             // rawDataChart
             // 
-            chartArea4.Area3DStyle.Inclination = 20;
-            chartArea4.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic;
-            chartArea4.Area3DStyle.Rotation = 10;
-            chartArea4.AxisX.LineColor = System.Drawing.Color.White;
-            chartArea4.AxisX.Title = "Data Point #";
-            chartArea4.AxisY.Title = "Raw Acceleration";
-            chartArea4.BackColor = System.Drawing.Color.DarkSlateGray;
-            chartArea4.Name = "ChartArea1";
-            this.rawDataChart.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend";
-            this.rawDataChart.Legends.Add(legend4);
+            chartArea2.Area3DStyle.Inclination = 20;
+            chartArea2.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic;
+            chartArea2.Area3DStyle.Rotation = 10;
+            chartArea2.AxisX.LineColor = System.Drawing.Color.White;
+            chartArea2.AxisX.Title = "Data Point #";
+            chartArea2.AxisY.Title = "Raw Acceleration";
+            chartArea2.BackColor = System.Drawing.Color.DarkSlateGray;
+            chartArea2.Name = "ChartArea1";
+            this.rawDataChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend";
+            this.rawDataChart.Legends.Add(legend2);
             this.rawDataChart.Location = new System.Drawing.Point(10, 22);
             this.rawDataChart.Name = "rawDataChart";
             this.rawDataChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
-            series10.ChartArea = "ChartArea1";
-            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series10.IsXValueIndexed = true;
-            series10.Legend = "Legend";
-            series10.Name = "Raw X";
-            series10.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            series10.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            series11.ChartArea = "ChartArea1";
-            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series11.IsXValueIndexed = true;
-            series11.Legend = "Legend";
-            series11.Name = "Raw Y";
-            series11.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            series12.ChartArea = "ChartArea1";
-            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series12.IsXValueIndexed = true;
-            series12.Legend = "Legend";
-            series12.Name = "Raw Z";
-            series12.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            this.rawDataChart.Series.Add(series10);
-            this.rawDataChart.Series.Add(series11);
-            this.rawDataChart.Series.Add(series12);
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.IsXValueIndexed = true;
+            series4.Legend = "Legend";
+            series4.Name = "Raw X";
+            series4.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            series4.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series5.IsXValueIndexed = true;
+            series5.Legend = "Legend";
+            series5.Name = "Raw Y";
+            series5.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series6.IsXValueIndexed = true;
+            series6.Legend = "Legend";
+            series6.Name = "Raw Z";
+            series6.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            this.rawDataChart.Series.Add(series4);
+            this.rawDataChart.Series.Add(series5);
+            this.rawDataChart.Series.Add(series6);
             this.rawDataChart.Size = new System.Drawing.Size(1186, 252);
             this.rawDataChart.TabIndex = 0;
             this.rawDataChart.Text = "Raw Data";
@@ -741,6 +741,10 @@
             // 
             this.moveNameMoveListGroupListBox.FormattingEnabled = true;
             this.moveNameMoveListGroupListBox.ItemHeight = 16;
+            this.moveNameMoveListGroupListBox.Items.AddRange(new object[] {
+            "Punch",
+            "Kick",
+            "Uppercut"});
             this.moveNameMoveListGroupListBox.Location = new System.Drawing.Point(7, 47);
             this.moveNameMoveListGroupListBox.Name = "moveNameMoveListGroupListBox";
             this.moveNameMoveListGroupListBox.Size = new System.Drawing.Size(74, 228);
@@ -751,6 +755,10 @@
             // 
             this.moveInputMoveListGroupListBox.FormattingEnabled = true;
             this.moveInputMoveListGroupListBox.ItemHeight = 16;
+            this.moveInputMoveListGroupListBox.Items.AddRange(new object[] {
+            "+X",
+            "+Z,+X",
+            "+X,+Y,+Z"});
             this.moveInputMoveListGroupListBox.Location = new System.Drawing.Point(78, 47);
             this.moveInputMoveListGroupListBox.Name = "moveInputMoveListGroupListBox";
             this.moveInputMoveListGroupListBox.Size = new System.Drawing.Size(104, 228);
@@ -777,7 +785,7 @@
             // 
             // StartGestureReadingTimer
             // 
-            this.StartGestureReadingTimer.Interval = 333;
+            this.StartGestureReadingTimer.Interval = 200;
             this.StartGestureReadingTimer.Tick += new System.EventHandler(this.StartGestureReadingTimer_Tick);
             // 
             // ClearGestureReadingTimer
