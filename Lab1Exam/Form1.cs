@@ -40,6 +40,10 @@ namespace Lab1Exam
         double yMean = -1;
         double zMean = -1;
 
+        double xMax = -1;
+        double yMax = -1;
+        double zMax = -1;
+
         // Sounds
         ISound bgMusic;
         ISound explosion;
@@ -195,6 +199,14 @@ namespace Lab1Exam
             yMeanDataGroupTextBox.Text = yMean.ToString();
             zMeanDataGroupTextBox.Text = zMean.ToString();
 
+            // Update max acceleration of last 1000 values for every axis
+            xMax = getMax(1000, xDataQueue);
+            yMax = getMax(1000, yDataQueue);
+            zMax = getMax(1000, zDataQueue);
+            xMaxAccelerationDataGroupTextBox.Text = xMax.ToString();
+            yMaxAccelerationDataGroupTextBox.Text = yMax.ToString();
+            zMaxAccelerationDataGroupTextBox.Text = zMax.ToString();
+
             // Update the full queue
             fullQueueSizeDataGroupTextBox.Text = dataQueue.Count.ToString();
 
@@ -308,11 +320,11 @@ namespace Lab1Exam
                 {
                     registerInputGesture("-Y");
                 }
-                else if (yAxis < margin*0.9)
+                else if (yAxis < margin*0.85)
                 {
                     registerInputGesture("+Y");
                 }
-                else if (xAxis > 254 - margin)
+                else if (xAxis > 254 - margin*0.9)
                 {
                     registerInputGesture("-X");
                 }
@@ -320,7 +332,7 @@ namespace Lab1Exam
                 {
                     registerInputGesture("+X");
                 }
-                else if (zAxis > 254-margin*0.6)
+                else if (zAxis > 254-margin*0.7)
                 {
                     registerInputGesture("+Z");
                 }
@@ -471,6 +483,24 @@ namespace Lab1Exam
             }
 
             timeInMSElapsed += 50;
+        }
+
+        private int getMax(int lastCount, ConcurrentQueue<int> queue)
+        {
+            int result;
+            int max = 0;
+            if (lastCount != -1)
+            {
+                while (queue.Count > lastCount)
+                    queue.TryDequeue(out result);
+            }
+
+            foreach (int i in queue)
+            {
+                if (i > max)
+                    max = i;
+            }
+            return max;
         }
 
         private double getMean(int lastCount, ConcurrentQueue<int> queue) {

@@ -35,6 +35,8 @@
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.dataGroupBox = new System.Windows.Forms.GroupBox();
+            this.fullQueueSizeDataGroupTextBox = new System.Windows.Forms.TextBox();
+            this.fullQueueSizeDataGroupLabel = new System.Windows.Forms.Label();
             this.currentOrientationDataGroupTextBox = new System.Windows.Forms.TextBox();
             this.currentOrientationDataGroupLabel = new System.Windows.Forms.Label();
             this.clearDataDataGroupButton = new System.Windows.Forms.Button();
@@ -100,12 +102,14 @@
             this.csvSaveFileDialogBox = new System.Windows.Forms.SaveFileDialog();
             this.StartGestureReadingTimer = new System.Windows.Forms.Timer(this.components);
             this.ClearGestureReadingTimer = new System.Windows.Forms.Timer(this.components);
-            this.fullQueueSizeDataGroupLabel = new System.Windows.Forms.Label();
-            this.fullQueueSizeDataGroupTextBox = new System.Windows.Forms.TextBox();
             this.soundGroupBox = new System.Windows.Forms.GroupBox();
-            this.backgroundSoundSoundGroupCheckBox = new System.Windows.Forms.CheckBox();
-            this.newGestureSoundGroupCheckBox = new System.Windows.Forms.CheckBox();
             this.newMoveSoundGroupCheckBox = new System.Windows.Forms.CheckBox();
+            this.newGestureSoundGroupCheckBox = new System.Windows.Forms.CheckBox();
+            this.backgroundSoundSoundGroupCheckBox = new System.Windows.Forms.CheckBox();
+            this.zMaxAccelerationDataGroupTextBox = new System.Windows.Forms.TextBox();
+            this.yMaxAccelerationDataGroupTextBox = new System.Windows.Forms.TextBox();
+            this.xMaxAccelerationDataGroupTextBox = new System.Windows.Forms.TextBox();
+            this.maxAccelerationDataGroupLabel = new System.Windows.Forms.Label();
             this.dataGroupBox.SuspendLayout();
             this.plotsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rawDataChart)).BeginInit();
@@ -116,6 +120,10 @@
             // 
             // dataGroupBox
             // 
+            this.dataGroupBox.Controls.Add(this.maxAccelerationDataGroupLabel);
+            this.dataGroupBox.Controls.Add(this.xMaxAccelerationDataGroupTextBox);
+            this.dataGroupBox.Controls.Add(this.yMaxAccelerationDataGroupTextBox);
+            this.dataGroupBox.Controls.Add(this.zMaxAccelerationDataGroupTextBox);
             this.dataGroupBox.Controls.Add(this.fullQueueSizeDataGroupTextBox);
             this.dataGroupBox.Controls.Add(this.fullQueueSizeDataGroupLabel);
             this.dataGroupBox.Controls.Add(this.currentOrientationDataGroupTextBox);
@@ -156,6 +164,23 @@
             this.dataGroupBox.TabIndex = 0;
             this.dataGroupBox.TabStop = false;
             this.dataGroupBox.Text = "Data";
+            // 
+            // fullQueueSizeDataGroupTextBox
+            // 
+            this.fullQueueSizeDataGroupTextBox.Location = new System.Drawing.Point(201, 199);
+            this.fullQueueSizeDataGroupTextBox.Name = "fullQueueSizeDataGroupTextBox";
+            this.fullQueueSizeDataGroupTextBox.ReadOnly = true;
+            this.fullQueueSizeDataGroupTextBox.Size = new System.Drawing.Size(100, 22);
+            this.fullQueueSizeDataGroupTextBox.TabIndex = 37;
+            // 
+            // fullQueueSizeDataGroupLabel
+            // 
+            this.fullQueueSizeDataGroupLabel.AutoSize = true;
+            this.fullQueueSizeDataGroupLabel.Location = new System.Drawing.Point(7, 199);
+            this.fullQueueSizeDataGroupLabel.Name = "fullQueueSizeDataGroupLabel";
+            this.fullQueueSizeDataGroupLabel.Size = new System.Drawing.Size(108, 17);
+            this.fullQueueSizeDataGroupLabel.TabIndex = 36;
+            this.fullQueueSizeDataGroupLabel.Text = "Full Queue Size";
             // 
             // currentOrientationDataGroupTextBox
             // 
@@ -205,7 +230,7 @@
             // 
             // zQueueDataGroupTextBox
             // 
-            this.zQueueDataGroupTextBox.Location = new System.Drawing.Point(240, 141);
+            this.zQueueDataGroupTextBox.Location = new System.Drawing.Point(255, 142);
             this.zQueueDataGroupTextBox.Name = "zQueueDataGroupTextBox";
             this.zQueueDataGroupTextBox.ReadOnly = true;
             this.zQueueDataGroupTextBox.Size = new System.Drawing.Size(61, 22);
@@ -213,7 +238,7 @@
             // 
             // yQueueDataGroupTextBox
             // 
-            this.yQueueDataGroupTextBox.Location = new System.Drawing.Point(240, 113);
+            this.yQueueDataGroupTextBox.Location = new System.Drawing.Point(255, 115);
             this.yQueueDataGroupTextBox.Name = "yQueueDataGroupTextBox";
             this.yQueueDataGroupTextBox.ReadOnly = true;
             this.yQueueDataGroupTextBox.Size = new System.Drawing.Size(61, 22);
@@ -221,7 +246,7 @@
             // 
             // xQueueDataGroupTextBox
             // 
-            this.xQueueDataGroupTextBox.Location = new System.Drawing.Point(240, 85);
+            this.xQueueDataGroupTextBox.Location = new System.Drawing.Point(255, 84);
             this.xQueueDataGroupTextBox.Name = "xQueueDataGroupTextBox";
             this.xQueueDataGroupTextBox.ReadOnly = true;
             this.xQueueDataGroupTextBox.Size = new System.Drawing.Size(61, 22);
@@ -229,7 +254,7 @@
             // 
             // zMeanDataGroupTextBox
             // 
-            this.zMeanDataGroupTextBox.Location = new System.Drawing.Point(162, 140);
+            this.zMeanDataGroupTextBox.Location = new System.Drawing.Point(121, 141);
             this.zMeanDataGroupTextBox.Name = "zMeanDataGroupTextBox";
             this.zMeanDataGroupTextBox.ReadOnly = true;
             this.zMeanDataGroupTextBox.Size = new System.Drawing.Size(61, 22);
@@ -237,7 +262,7 @@
             // 
             // yMeanDataGroupTextBox
             // 
-            this.yMeanDataGroupTextBox.Location = new System.Drawing.Point(162, 112);
+            this.yMeanDataGroupTextBox.Location = new System.Drawing.Point(121, 113);
             this.yMeanDataGroupTextBox.Name = "yMeanDataGroupTextBox";
             this.yMeanDataGroupTextBox.ReadOnly = true;
             this.yMeanDataGroupTextBox.Size = new System.Drawing.Size(61, 22);
@@ -245,7 +270,7 @@
             // 
             // xMeanDataGroupTextBox
             // 
-            this.xMeanDataGroupTextBox.Location = new System.Drawing.Point(162, 84);
+            this.xMeanDataGroupTextBox.Location = new System.Drawing.Point(121, 85);
             this.xMeanDataGroupTextBox.Name = "xMeanDataGroupTextBox";
             this.xMeanDataGroupTextBox.ReadOnly = true;
             this.xMeanDataGroupTextBox.Size = new System.Drawing.Size(61, 22);
@@ -253,7 +278,7 @@
             // 
             // zAccelerationDataGroupTextBox
             // 
-            this.zAccelerationDataGroupTextBox.Location = new System.Drawing.Point(92, 140);
+            this.zAccelerationDataGroupTextBox.Location = new System.Drawing.Point(54, 141);
             this.zAccelerationDataGroupTextBox.Name = "zAccelerationDataGroupTextBox";
             this.zAccelerationDataGroupTextBox.ReadOnly = true;
             this.zAccelerationDataGroupTextBox.Size = new System.Drawing.Size(61, 22);
@@ -261,7 +286,7 @@
             // 
             // yAccelerationDataGroupTextBox
             // 
-            this.yAccelerationDataGroupTextBox.Location = new System.Drawing.Point(92, 112);
+            this.yAccelerationDataGroupTextBox.Location = new System.Drawing.Point(54, 114);
             this.yAccelerationDataGroupTextBox.Name = "yAccelerationDataGroupTextBox";
             this.yAccelerationDataGroupTextBox.ReadOnly = true;
             this.yAccelerationDataGroupTextBox.Size = new System.Drawing.Size(61, 22);
@@ -269,7 +294,7 @@
             // 
             // xAccelerationDataGroupTextBox
             // 
-            this.xAccelerationDataGroupTextBox.Location = new System.Drawing.Point(92, 84);
+            this.xAccelerationDataGroupTextBox.Location = new System.Drawing.Point(54, 85);
             this.xAccelerationDataGroupTextBox.Name = "xAccelerationDataGroupTextBox";
             this.xAccelerationDataGroupTextBox.ReadOnly = true;
             this.xAccelerationDataGroupTextBox.Size = new System.Drawing.Size(61, 22);
@@ -341,11 +366,12 @@
             // meanDataGroupLabel
             // 
             this.meanDataGroupLabel.AutoSize = true;
-            this.meanDataGroupLabel.Location = new System.Drawing.Point(141, 64);
+            this.meanDataGroupLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.meanDataGroupLabel.Location = new System.Drawing.Point(118, 66);
             this.meanDataGroupLabel.Name = "meanDataGroupLabel";
-            this.meanDataGroupLabel.Size = new System.Drawing.Size(107, 17);
+            this.meanDataGroupLabel.Size = new System.Drawing.Size(61, 13);
             this.meanDataGroupLabel.TabIndex = 8;
-            this.meanDataGroupLabel.Text = "Mean (last 100)";
+            this.meanDataGroupLabel.Text = "Mean (100)";
             // 
             // xDataGroupLabel
             // 
@@ -359,7 +385,7 @@
             // yDataGroupLabel
             // 
             this.yDataGroupLabel.AutoSize = true;
-            this.yDataGroupLabel.Location = new System.Drawing.Point(7, 115);
+            this.yDataGroupLabel.Location = new System.Drawing.Point(6, 118);
             this.yDataGroupLabel.Name = "yDataGroupLabel";
             this.yDataGroupLabel.Size = new System.Drawing.Size(17, 17);
             this.yDataGroupLabel.TabIndex = 6;
@@ -368,7 +394,7 @@
             // accelerationDataGroupLabel
             // 
             this.accelerationDataGroupLabel.AutoSize = true;
-            this.accelerationDataGroupLabel.Location = new System.Drawing.Point(89, 64);
+            this.accelerationDataGroupLabel.Location = new System.Drawing.Point(59, 64);
             this.accelerationDataGroupLabel.Name = "accelerationDataGroupLabel";
             this.accelerationDataGroupLabel.Size = new System.Drawing.Size(42, 17);
             this.accelerationDataGroupLabel.TabIndex = 5;
@@ -386,7 +412,7 @@
             // queueDataGroupLabel
             // 
             this.queueDataGroupLabel.AutoSize = true;
-            this.queueDataGroupLabel.Location = new System.Drawing.Point(246, 64);
+            this.queueDataGroupLabel.Location = new System.Drawing.Point(252, 64);
             this.queueDataGroupLabel.Name = "queueDataGroupLabel";
             this.queueDataGroupLabel.Size = new System.Drawing.Size(51, 17);
             this.queueDataGroupLabel.TabIndex = 3;
@@ -753,9 +779,9 @@
             this.moveNameMoveListGroupListBox.FormattingEnabled = true;
             this.moveNameMoveListGroupListBox.ItemHeight = 16;
             this.moveNameMoveListGroupListBox.Items.AddRange(new object[] {
-            "Punch",
-            "Kick",
-            "Uppercut"});
+            "Go west, young man",
+            "Frisbee",
+            "Wave"});
             this.moveNameMoveListGroupListBox.Location = new System.Drawing.Point(7, 47);
             this.moveNameMoveListGroupListBox.Name = "moveNameMoveListGroupListBox";
             this.moveNameMoveListGroupListBox.Size = new System.Drawing.Size(74, 228);
@@ -767,9 +793,9 @@
             this.moveInputMoveListGroupListBox.FormattingEnabled = true;
             this.moveInputMoveListGroupListBox.ItemHeight = 16;
             this.moveInputMoveListGroupListBox.Items.AddRange(new object[] {
-            "+X",
-            "+Z,+X",
-            "+X,+Y,+Z"});
+            "+Y",
+            "+X,+Y",
+            "+Z,+Y,-Y"});
             this.moveInputMoveListGroupListBox.Location = new System.Drawing.Point(78, 47);
             this.moveInputMoveListGroupListBox.Name = "moveInputMoveListGroupListBox";
             this.moveInputMoveListGroupListBox.Size = new System.Drawing.Size(104, 228);
@@ -804,23 +830,6 @@
             this.ClearGestureReadingTimer.Interval = 101;
             this.ClearGestureReadingTimer.Tick += new System.EventHandler(this.ClearGestureReadingTimer_Tick);
             // 
-            // fullQueueSizeDataGroupLabel
-            // 
-            this.fullQueueSizeDataGroupLabel.AutoSize = true;
-            this.fullQueueSizeDataGroupLabel.Location = new System.Drawing.Point(7, 199);
-            this.fullQueueSizeDataGroupLabel.Name = "fullQueueSizeDataGroupLabel";
-            this.fullQueueSizeDataGroupLabel.Size = new System.Drawing.Size(108, 17);
-            this.fullQueueSizeDataGroupLabel.TabIndex = 36;
-            this.fullQueueSizeDataGroupLabel.Text = "Full Queue Size";
-            // 
-            // fullQueueSizeDataGroupTextBox
-            // 
-            this.fullQueueSizeDataGroupTextBox.Location = new System.Drawing.Point(201, 199);
-            this.fullQueueSizeDataGroupTextBox.Name = "fullQueueSizeDataGroupTextBox";
-            this.fullQueueSizeDataGroupTextBox.ReadOnly = true;
-            this.fullQueueSizeDataGroupTextBox.Size = new System.Drawing.Size(100, 22);
-            this.fullQueueSizeDataGroupTextBox.TabIndex = 37;
-            // 
             // soundGroupBox
             // 
             this.soundGroupBox.Controls.Add(this.newMoveSoundGroupCheckBox);
@@ -833,18 +842,18 @@
             this.soundGroupBox.TabStop = false;
             this.soundGroupBox.Text = "Sound";
             // 
-            // backgroundSoundSoundGroupCheckBox
+            // newMoveSoundGroupCheckBox
             // 
-            this.backgroundSoundSoundGroupCheckBox.AutoSize = true;
-            this.backgroundSoundSoundGroupCheckBox.Checked = true;
-            this.backgroundSoundSoundGroupCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.backgroundSoundSoundGroupCheckBox.Location = new System.Drawing.Point(6, 31);
-            this.backgroundSoundSoundGroupCheckBox.Name = "backgroundSoundSoundGroupCheckBox";
-            this.backgroundSoundSoundGroupCheckBox.Size = new System.Drawing.Size(146, 21);
-            this.backgroundSoundSoundGroupCheckBox.TabIndex = 0;
-            this.backgroundSoundSoundGroupCheckBox.Text = "Background Music";
-            this.backgroundSoundSoundGroupCheckBox.UseVisualStyleBackColor = true;
-            this.backgroundSoundSoundGroupCheckBox.CheckedChanged += new System.EventHandler(this.backgroundSoundSoundGroupCheckBox_CheckedChanged);
+            this.newMoveSoundGroupCheckBox.AutoSize = true;
+            this.newMoveSoundGroupCheckBox.Checked = true;
+            this.newMoveSoundGroupCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.newMoveSoundGroupCheckBox.Location = new System.Drawing.Point(6, 85);
+            this.newMoveSoundGroupCheckBox.Name = "newMoveSoundGroupCheckBox";
+            this.newMoveSoundGroupCheckBox.Size = new System.Drawing.Size(135, 21);
+            this.newMoveSoundGroupCheckBox.TabIndex = 2;
+            this.newMoveSoundGroupCheckBox.Text = "Move Completed";
+            this.newMoveSoundGroupCheckBox.UseVisualStyleBackColor = true;
+            this.newMoveSoundGroupCheckBox.CheckedChanged += new System.EventHandler(this.newMoveSoundGroupCheckBox_CheckedChanged);
             // 
             // newGestureSoundGroupCheckBox
             // 
@@ -859,18 +868,52 @@
             this.newGestureSoundGroupCheckBox.UseVisualStyleBackColor = true;
             this.newGestureSoundGroupCheckBox.CheckedChanged += new System.EventHandler(this.newGestureSoundGroupCheckBox_CheckedChanged);
             // 
-            // newMoveSoundGroupCheckBox
+            // backgroundSoundSoundGroupCheckBox
             // 
-            this.newMoveSoundGroupCheckBox.AutoSize = true;
-            this.newMoveSoundGroupCheckBox.Checked = true;
-            this.newMoveSoundGroupCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.newMoveSoundGroupCheckBox.Location = new System.Drawing.Point(6, 85);
-            this.newMoveSoundGroupCheckBox.Name = "newMoveSoundGroupCheckBox";
-            this.newMoveSoundGroupCheckBox.Size = new System.Drawing.Size(135, 21);
-            this.newMoveSoundGroupCheckBox.TabIndex = 2;
-            this.newMoveSoundGroupCheckBox.Text = "Move Completed";
-            this.newMoveSoundGroupCheckBox.UseVisualStyleBackColor = true;
-            this.newMoveSoundGroupCheckBox.CheckedChanged += new System.EventHandler(this.newMoveSoundGroupCheckBox_CheckedChanged);
+            this.backgroundSoundSoundGroupCheckBox.AutoSize = true;
+            this.backgroundSoundSoundGroupCheckBox.Checked = true;
+            this.backgroundSoundSoundGroupCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.backgroundSoundSoundGroupCheckBox.Location = new System.Drawing.Point(6, 31);
+            this.backgroundSoundSoundGroupCheckBox.Name = "backgroundSoundSoundGroupCheckBox";
+            this.backgroundSoundSoundGroupCheckBox.Size = new System.Drawing.Size(146, 21);
+            this.backgroundSoundSoundGroupCheckBox.TabIndex = 0;
+            this.backgroundSoundSoundGroupCheckBox.Text = "Background Music";
+            this.backgroundSoundSoundGroupCheckBox.UseVisualStyleBackColor = true;
+            this.backgroundSoundSoundGroupCheckBox.CheckedChanged += new System.EventHandler(this.backgroundSoundSoundGroupCheckBox_CheckedChanged);
+            // 
+            // zMaxAccelerationDataGroupTextBox
+            // 
+            this.zMaxAccelerationDataGroupTextBox.Location = new System.Drawing.Point(188, 142);
+            this.zMaxAccelerationDataGroupTextBox.Name = "zMaxAccelerationDataGroupTextBox";
+            this.zMaxAccelerationDataGroupTextBox.ReadOnly = true;
+            this.zMaxAccelerationDataGroupTextBox.Size = new System.Drawing.Size(61, 22);
+            this.zMaxAccelerationDataGroupTextBox.TabIndex = 38;
+            // 
+            // yMaxAccelerationDataGroupTextBox
+            // 
+            this.yMaxAccelerationDataGroupTextBox.Location = new System.Drawing.Point(188, 114);
+            this.yMaxAccelerationDataGroupTextBox.Name = "yMaxAccelerationDataGroupTextBox";
+            this.yMaxAccelerationDataGroupTextBox.ReadOnly = true;
+            this.yMaxAccelerationDataGroupTextBox.Size = new System.Drawing.Size(61, 22);
+            this.yMaxAccelerationDataGroupTextBox.TabIndex = 39;
+            // 
+            // xMaxAccelerationDataGroupTextBox
+            // 
+            this.xMaxAccelerationDataGroupTextBox.Location = new System.Drawing.Point(188, 85);
+            this.xMaxAccelerationDataGroupTextBox.Name = "xMaxAccelerationDataGroupTextBox";
+            this.xMaxAccelerationDataGroupTextBox.ReadOnly = true;
+            this.xMaxAccelerationDataGroupTextBox.Size = new System.Drawing.Size(61, 22);
+            this.xMaxAccelerationDataGroupTextBox.TabIndex = 40;
+            // 
+            // maxAccelerationDataGroupLabel
+            // 
+            this.maxAccelerationDataGroupLabel.AutoSize = true;
+            this.maxAccelerationDataGroupLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maxAccelerationDataGroupLabel.Location = new System.Drawing.Point(185, 66);
+            this.maxAccelerationDataGroupLabel.Name = "maxAccelerationDataGroupLabel";
+            this.maxAccelerationDataGroupLabel.Size = new System.Drawing.Size(60, 13);
+            this.maxAccelerationDataGroupLabel.TabIndex = 41;
+            this.maxAccelerationDataGroupLabel.Text = "Max (1000)";
             // 
             // MainForm
             // 
@@ -975,6 +1018,10 @@
         private System.Windows.Forms.CheckBox newMoveSoundGroupCheckBox;
         private System.Windows.Forms.CheckBox newGestureSoundGroupCheckBox;
         private System.Windows.Forms.CheckBox backgroundSoundSoundGroupCheckBox;
+        private System.Windows.Forms.Label maxAccelerationDataGroupLabel;
+        private System.Windows.Forms.TextBox xMaxAccelerationDataGroupTextBox;
+        private System.Windows.Forms.TextBox yMaxAccelerationDataGroupTextBox;
+        private System.Windows.Forms.TextBox zMaxAccelerationDataGroupTextBox;
     }
 }
 
