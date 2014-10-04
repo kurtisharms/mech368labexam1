@@ -332,7 +332,7 @@ namespace Lab1Exam
                 {
                     registerInputGesture("+X");
                 }
-                else if (zAxis > 254-margin*0.7)
+                else if (zAxis > 254-margin*0.75)
                 {
                     registerInputGesture("+Z");
                 }
@@ -390,6 +390,7 @@ namespace Lab1Exam
             // Have we completed a full move of gestures? If so, display the completion form!
             string gestureName = getGestureName(movesInputted);
             if (gestureName != "") {
+                timeToClear = 200;
                 GestureCompletedForm gcf = new GestureCompletedForm(gestureName, 1000, newMoveSoundGroupCheckBox.Checked);
                 gcf.Show();
                 historyMovesGroupListBox.Items.Add(gestureName + " - " + DateTime.Now.ToShortTimeString());
